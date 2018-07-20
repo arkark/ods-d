@@ -53,6 +53,7 @@ public:
     n++;
   }
 
+  // amortized O(1)
   alias push = add;
 
   // amortized O(1)
@@ -69,6 +70,7 @@ public:
     return x;
   }
 
+  // amortized O(1)
   alias pop = remove;
 
 private:
@@ -148,6 +150,33 @@ unittest {
     assert(queue.pop() == xs[i]);
     assert(queue.size == n-i-1);
   }
+}
+
+unittest {
+  writeln(__FILE__, ": Random `get` and `set`");
+
+  auto queue = new ArrayQueue!long();
+  long n = 1000;
+  long m = 100;
+  assert(m <= n);
+  long[] xs1 = randomArray!long(n);
+  long[] xs2 = randomArray!long(n);
+
+  foreach(i; 0..n) {
+    queue.push(xs1[i]);
+  }
+  foreach(i; 0..n) {
+    assert(queue.set(i, xs2[i]) == xs1[i]);
+    assert(queue.get(i) == xs2[i]);
+  }
+  foreach(i; 0..m) {
+    queue.pop();
+  }
+  foreach(i; 0..n-m) {
+    assert(queue.set(i, xs1[i]) == xs2[m+i]);
+    assert(queue.get(i) == xs1[i]);
+  }
+
 }
 
 unittest {
