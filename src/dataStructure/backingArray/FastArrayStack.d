@@ -154,9 +154,9 @@ unittest {
   foreach(i; 0..n) {
     stack.push(xs[i]);
   }
-  foreach_reverse(i; 0..n) {
-    assert(stack.pop() == xs[i]);
-    assert(stack.size == i);
+  foreach(i; 0..n) {
+    assert(stack.pop() == xs[n-i-1]);
+    assert(stack.size == n-i-1);
   }
 }
 
