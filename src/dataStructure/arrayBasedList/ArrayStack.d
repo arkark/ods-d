@@ -1,4 +1,4 @@
-module odsD.dataStructure.backingArray.ArrayStack;
+module odsD.dataStructure.arrayBasedList.ArrayStack;
 
 class ArrayStack(T) {
   import std.algorithm : max;

@@ -1,4 +1,4 @@
-module odsD.dataStructure.backingArray.FastArrayStack;
+module odsD.dataStructure.arrayBasedList.FastArrayStack;
 
 class FastArrayStack(T) {
   import core.stdc.string : memcpy, memmove;
@@ -213,7 +213,7 @@ unittest {
 unittest {
   writeln(__FILE__, ": Really fast?");
 
-  import odsD.dataStructure.backingArray.ArrayStack;
+  import odsD.dataStructure.arrayBasedList.ArrayStack;
 
   auto slowStack = new ArrayStack!long();
   auto fastStack = new FastArrayStack!long();

@@ -1,5 +1,5 @@
 module odsD.dataStructure;
 
 public {
-  import odsD.dataStructure.backingArray;
+  import odsD.dataStructure.arrayBasedList;
 }

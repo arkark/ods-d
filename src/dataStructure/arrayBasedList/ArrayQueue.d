@@ -1,4 +1,4 @@
-module odsD.dataStructure.backingArray.ArrayQueue;
+module odsD.dataStructure.arrayBasedList.ArrayQueue;
 
 class ArrayQueue(T) {
   import std.algorithm : max;
