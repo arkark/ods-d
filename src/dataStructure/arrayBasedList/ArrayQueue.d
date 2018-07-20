@@ -49,8 +49,8 @@ public:
     if (n + 1 >= xs.length) {
       resize();
     }
-    xs[(offset + n)%$] = x;
     n++;
+    set(n - 1, x);
   }
 
   // amortized O(1)
@@ -61,7 +61,7 @@ public:
   T remove() in {
     assert(n > 0, "Attempting to fetch the front of an empty ArrayQueue");
   } do {
-    T x = xs[offset];
+    T x = get(0);
     offset = (offset + 1)%xs.length;
     n--;
     if (xs.length >= 3*n) {
@@ -78,7 +78,7 @@ private:
   void resize() {
     T[] ys = new T[max(2*n, 1)];
     foreach(i; 0..n) {
-      ys[i] = xs[(offset + i)%$];
+      ys[i] = get(i);
     }
     xs = ys;
     offset = 0;
