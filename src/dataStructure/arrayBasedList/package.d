@@ -9,4 +9,5 @@ public {
   import odsD.dataStructure.arrayBasedList.ArrayStack;
   import odsD.dataStructure.arrayBasedList.FastArrayStack;
   import odsD.dataStructure.arrayBasedList.ArrayQueue;
+  import odsD.dataStructure.arrayBasedList.ArrayDeque;  
 }
