@@ -1,15 +1,20 @@
 module util.testFunctions;
 
+
+import std.format;
+import std.datetime;
+
 public {
   import std.datetime : msecs;
 }
 
-import std.format;
-import std.datetime;
-import std.datetime.stopwatch : benchmark;
+Duration benchmark(alias fun)(uint iter) {
+  import std.datetime.stopwatch : benchmark;
+  return benchmark!fun(iter)[0];
+}
 
 void testTimeComplexity(string name, alias fun)(uint iter, Duration timeLimit) {
-  auto time = benchmark!fun(iter)[0];
+  auto time = benchmark!fun(iter);
 
   assert(
     time < timeLimit,
