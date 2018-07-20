@@ -97,18 +97,7 @@ private:
 
 /* Unit Tests */
 
-import std.stdio;
-import std.format;
-
-private T[] randomArray(T)(size_t n) {
-  import std.random;
-  auto rnd = Random(unpredictableSeed);
-  T[] xs = new T[n];
-  foreach(ref x; xs) {
-    x = rnd.uniform!T;
-  }
-  return xs;
-}
+import util.testFunctions;
 
 unittest {
   writeln(__FILE__, ": some operations");
@@ -212,8 +201,6 @@ unittest {
 unittest {
   writeln(__FILE__, ": time complexity");
 
-  import util.testFunctions;
-
   auto stack = new FastArrayStack!long();
   uint iter = 10^^7;
   auto timeLimit = 2000.msecs;
@@ -227,7 +214,6 @@ unittest {
   writeln(__FILE__, ": really fast?");
 
   import odsD.dataStructure.backingArray.ArrayStack;
-  import util.testFunctions;
 
   auto slowStack = new ArrayStack!long();
   auto fastStack = new FastArrayStack!long();

@@ -1,10 +1,11 @@
 module util.testFunctions;
 
-
 import std.format;
 import std.datetime;
 
 public {
+  import std.stdio : writeln;
+  import std.format : format;
   import std.datetime : msecs;
 }
 
@@ -22,4 +23,14 @@ void testTimeComplexity(string name, alias fun)(uint iter, Duration timeLimit) {
       name, iter, time.total!"msecs", timeLimit.total!"msecs"
     )
   );
+}
+
+T[] randomArray(T)(size_t n) {
+  import std.random;
+  auto rnd = Random(unpredictableSeed);
+  T[] xs = new T[n];
+  foreach(ref x; xs) {
+    x = rnd.uniform!T;
+  }
+  return xs;
 }

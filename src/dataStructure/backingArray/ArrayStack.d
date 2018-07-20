@@ -102,18 +102,7 @@ private:
 
 /* Unit Tests */
 
-import std.stdio;
-import std.format;
-
-private T[] randomArray(T)(size_t n) {
-  import std.random;
-  auto rnd = Random(unpredictableSeed);
-  T[] xs = new T[n];
-  foreach(ref x; xs) {
-    x = rnd.uniform!T;
-  }
-  return xs;
-}
+import util.testFunctions;
 
 unittest {
   writeln(__FILE__, ": some operations");
@@ -216,8 +205,6 @@ unittest {
 
 unittest {
   writeln(__FILE__, ": time complexity");
-
-  import util.testFunctions;
 
   auto stack = new ArrayStack!long();
   uint iter = 10^^7;
