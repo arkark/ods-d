@@ -103,6 +103,7 @@ private:
 /* Unit Tests */
 
 import std.stdio;
+import std.format;
 
 private T[] randomArray(T)(size_t n) {
   import std.random;
@@ -211,4 +212,18 @@ unittest {
     assert(stack.remove(0) == xs[n-i-1]);
   }
   assert(stack.size == 0);
+}
+
+unittest {
+  writeln(__FILE__, ": time complexity");
+
+  import util.testFunctions;
+
+  auto stack = new ArrayStack!long();
+  uint iter = 10^^7;
+  auto timeLimit = 2000.msecs;
+
+  // ArrayStack should be able to execute `push` and `pop` 10^^7 times within 2000 ms because the time complexity is amortized O(1)."
+  testTimeComplexity!("push", () => stack.push(0))(iter, timeLimit);
+  testTimeComplexity!("pop", () => stack.pop())(iter, timeLimit);
 }
