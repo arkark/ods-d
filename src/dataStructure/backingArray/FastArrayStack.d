@@ -22,7 +22,7 @@ public:
 
   // O(1)
   T get(size_t i) in {
-    assert(i < n, format!"Attempting to fetch the %sth element of an ArrayStack with size == %s"(i, n));
+    assert(i < n, format!"Attempting to fetch the %sth element of an StackArrayStack with size == %s"(i, n));
   } do {
     return xs[i];
   }
@@ -30,7 +30,7 @@ public:
   // O(1)
   // @return: previous `xs[i]` value
   T set(size_t i, T x) in {
-    assert(i < n, format!"Attempting to fetch the %sth element of an ArrayStack with size == %s"(i, n));
+    assert(i < n, format!"Attempting to fetch the %sth element of an StackArrayStack with size == %s"(i, n));
   } do {
     T y = xs[i];
     xs[i] = x;
@@ -45,7 +45,7 @@ public:
 
   // amortized O(1 + n - i)
   void add(size_t i, T x) in {
-    assert(i <= n, format!"Attempting to add %s to the %sth index of an ArrayStack with size == %s"(x, i, n));
+    assert(i <= n, format!"Attempting to add %s to the %sth index of an StackArrayStack with size == %s"(x, i, n));
   } do {
     if (n + 1 >= xs.length) {
       resize();
@@ -58,7 +58,7 @@ public:
   // amortized O(1 + n - i)
   // @return: removed value
   T remove(size_t i) in {
-    assert(i < n, format!"Attempting to fetch the %sth element of an ArrayStack with size == %s"(i, n));
+    assert(i < n, format!"Attempting to fetch the %sth element of an StackArrayStack with size == %s"(i, n));
   } do {
     T x = xs[i];
     memmove(xs.ptr + i, xs.ptr + (i + 1), T.sizeof * (n - i - 1)); //

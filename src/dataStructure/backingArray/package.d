@@ -6,4 +6,5 @@ module odsD.dataStructure.backingArray;
 
 public {
   import odsD.dataStructure.backingArray.ArrayStack;
+  import odsD.dataStructure.backingArray.FastArrayStack;
 }
