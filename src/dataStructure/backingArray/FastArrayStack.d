@@ -100,7 +100,7 @@ private:
 import util.testFunctions;
 
 unittest {
-  writeln(__FILE__, ": some operations");
+  writeln(__FILE__, ": Some operations");
 
   auto stack = new FastArrayStack!long();
   assert(stack.size == 0);
@@ -128,7 +128,7 @@ unittest {
 }
 
 unittest {
-  writeln(__FILE__, ": random `push`");
+  writeln(__FILE__, ": Random `push`");
 
   auto stack = new FastArrayStack!long();
   long n = 1000;
@@ -145,7 +145,7 @@ unittest {
 }
 
 unittest {
-  writeln(__FILE__, ": random `pop`");
+  writeln(__FILE__, ": Random `pop`");
 
   auto stack = new FastArrayStack!long();
   long n = 1000;
@@ -161,7 +161,7 @@ unittest {
 }
 
 unittest {
-  writeln(__FILE__, ": random `set`");
+  writeln(__FILE__, ": Random `set`");
 
   auto stack = new FastArrayStack!long();
   long n = 1000;
@@ -178,7 +178,7 @@ unittest {
 }
 
 unittest {
-  writeln(__FILE__, ": random `add` and `remove`");
+  writeln(__FILE__, ": Random `add` and `remove`");
 
   auto stack = new FastArrayStack!long();
   long n = 1000;
@@ -199,7 +199,7 @@ unittest {
 }
 
 unittest {
-  writeln(__FILE__, ": time complexity");
+  writeln(__FILE__, ": Time complexity");
 
   auto stack = new FastArrayStack!long();
   uint iter = 10^^7;
@@ -211,7 +211,7 @@ unittest {
 }
 
 unittest {
-  writeln(__FILE__, ": really fast?");
+  writeln(__FILE__, ": Really fast?");
 
   import odsD.dataStructure.backingArray.ArrayStack;
 
