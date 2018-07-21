@@ -1,4 +1,4 @@
-module util.testFunctions;
+module odsD.test.testFunctions;
 
 import std.format;
 import std.datetime;

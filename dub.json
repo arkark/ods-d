@@ -1,11 +1,11 @@
 {
   "name": "ods-d",
-  "authors": [
-    "Ark"
-  ],
+  "authors": ["Ark"],
   "description": "D implementation of data structures in Open Data Structures (ODS).",
   "copyright": "Copyright © 2018, Ark",
   "license": "MIT",
   "homepage": "https://github.com/ArkArk/ods-d",
-  "targetPath": "build"
+  "targetPath": "build",
+  "sourcePaths": ["src", "test"],
+  "importPaths": ["src", "test"]
 }
