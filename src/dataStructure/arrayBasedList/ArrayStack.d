@@ -56,7 +56,7 @@ public:
     n++;
   }
 
-  // amortized O(1 + n - i)
+  // amortized O(n - i)
   // @return: removed value
   T remove(size_t i) in {
     assert(i < n, format!"Attempting to fetch the %sth element of an ArrayStack with size == %s"(i, n));
@@ -102,7 +102,6 @@ private:
   }
 
   invariant {
-    assert(n >= 0);
     assert(n <= xs.length);
   }
 }

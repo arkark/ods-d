@@ -85,7 +85,6 @@ private:
   }
 
   invariant {
-    assert(n >= 0);
     assert(n <= xs.length);
     assert(offset <= xs.length);
   }

@@ -146,7 +146,7 @@ unittest {
   uint iter = 10^^6;
   auto timeLimit = 2000.msecs;
 
-  // ArrayDeque should be able to execute `pushFront`, `pushBack`, `popFront` and `popBack` 10^^7 times within 2000 ms because the time complexity is amortized O(1)."
+  // ArrayDeque should be able to execute `pushFront`, `pushBack`, `popFront` and `popBack` 10^^6 times within 2000 ms because the time complexity is amortized O(1)."
   testTimeComplexity!("pushFront", () => deque.pushFront(0))(iter, timeLimit);
   testTimeComplexity!("popFront", () => deque.popFront())(iter, timeLimit);
   testTimeComplexity!("pushBack", () => deque.pushBack(0))(iter, timeLimit);

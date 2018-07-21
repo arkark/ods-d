@@ -94,7 +94,7 @@ unittest {
   uint iter = 10^^6;
   auto timeLimit = 2000.msecs;
 
-  // ArrayQueue should be able to execute `push` and `pop` 10^^7 times within 2000 ms because the time complexity is amortized O(1)."
+  // ArrayQueue should be able to execute `push` and `pop` 10^^6 times within 2000 ms because the time complexity is amortized O(1)."
   testTimeComplexity!("push", () => stack.push(0))(iter, timeLimit);
   testTimeComplexity!("pop", () => stack.pop())(iter, timeLimit);
 }
