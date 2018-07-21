@@ -84,6 +84,13 @@ public:
     return remove(n - 1);
   }
 
+package:
+  // O(1)
+  void setArray(T[] xs, size_t n) {
+    this.xs = xs;
+    this.n = n;
+  }
+
 private:
   // O(n)
   void resize() {
