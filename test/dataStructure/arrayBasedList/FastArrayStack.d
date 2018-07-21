@@ -1,7 +1,7 @@
 module odsD.test.dataStructure.arrayBasedList.FastArrayStack;
 
 import odsD.dataStructure.arrayBasedList.FastArrayStack;
-import odsD.test.testFunctions;
+import odsD.test;
 
 unittest {
   writeln(__FILE__, ": Some operations");
