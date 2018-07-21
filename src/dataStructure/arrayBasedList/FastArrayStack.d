@@ -5,7 +5,7 @@ class FastArrayStack(T) {
   import std.algorithm : min, max;
   import std.format;
 
-private:
+protected:
   T[] xs;
   size_t n;
 
@@ -81,7 +81,7 @@ public:
     return remove(n - 1);
   }
 
-private:
+protected:
   // O(n)
   void resize() {
     T[] ys = new T[max(2*n, 1)];

@@ -5,7 +5,7 @@ class RootishArrayStack(T) {
   import std.math : sqrt, ceil;
   import std.format;
 
-private:
+protected:
   ArrayStack!(T[]) blocks = new ArrayStack!(T[])();
   size_t n;
 
@@ -87,7 +87,7 @@ public:
     return remove(n - 1);
   }
 
-private:
+protected:
   // index to block
   size_t i2b(size_t i) {
     return cast(size_t)(ceil(

@@ -4,7 +4,7 @@ module odsD.dataStructure.linkedList.SLList;
 class SLList(T) {
   import std.format;
 
-private:
+protected:
   Node head;
   Node tail;
   size_t n;
@@ -67,7 +67,7 @@ public:
   }
   alias pushBack = add;
 
-private:
+protected:
   class Node {
     T x;
     Node next;

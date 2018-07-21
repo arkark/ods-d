@@ -4,7 +4,7 @@ module odsD.dataStructure.linkedList.DLList;
 class DLList(T) {
   import std.format;
 
-private:
+protected:
   Node dummy;
   size_t n;
 
@@ -86,7 +86,7 @@ public:
     return remove(n-1);
   }
 
-private:
+protected:
   // O(1 + min(i, n - i))
   Node getNode(size_t i) {
     Node p;

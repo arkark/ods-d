@@ -5,7 +5,7 @@ class DualArrayDeque(T) {
   import std.algorithm : max;
   import std.format;
 
-private:
+protected:
   ArrayStack!T frontStack = new ArrayStack!T();
   ArrayStack!T backStack = new ArrayStack!T();
 
@@ -100,7 +100,7 @@ public:
     return remove(size - 1);
   }
 
-private:
+protected:
   // O(n)
   void balance() {
     if (isUnbalance) {

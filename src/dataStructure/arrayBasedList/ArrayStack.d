@@ -4,7 +4,7 @@ class ArrayStack(T) {
   import std.algorithm : max;
   import std.format;
 
-private:
+protected:
   T[] xs;
   size_t n;
 
@@ -91,7 +91,7 @@ package:
     this.n = n;
   }
 
-private:
+protected:
   // O(n)
   void resize() {
     T[] ys = new T[max(2*n, 1)];

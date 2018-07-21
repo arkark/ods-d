@@ -4,7 +4,7 @@ class ArrayDeque(T) {
   import std.algorithm : max;
   import std.format;
 
-private:
+protected:
   T[] xs;
   size_t n;
   size_t offset;
@@ -112,7 +112,7 @@ public:
     return remove(n - 1);
   }
 
-private:
+protected:
   // O(n)
   void resize() {
     T[] ys = new T[max(2*n, 1)];
