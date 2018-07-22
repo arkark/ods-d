@@ -100,7 +100,7 @@ public:
         removed = true;
         node.nexts[r] = node.nexts[r].nexts[r];
         if (node is sentinel && node.nexts[r] is null) {
-          height--;
+          if (height > 0) height--;
         }
       }
     }
