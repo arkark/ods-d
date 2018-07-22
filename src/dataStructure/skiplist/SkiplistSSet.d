@@ -1,4 +1,4 @@
-module odsD.dataStructure.skipList.SkipListSSet;
+module odsD.dataStructure.skiplist.SkiplistSSet;
 
 import std.format;
 import std.range;
@@ -7,7 +7,7 @@ import std.random;
 import std.functional;
 import std.traits;
 
-class SkipListSSet(T, alias less = "a < b")
+class SkiplistSSet(T, alias less = "a < b")
 if (is(typeof(binaryFun!less(T.init, T.init)))) {
 
 protected:

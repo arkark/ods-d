@@ -1,12 +1,12 @@
-module odsD.test.dataStructure.skipList.SkipListSSet;
+module odsD.test.dataStructure.skiplist.SkiplistSSet;
 
-import odsD.dataStructure.skipList.SkipListSSet;
+import odsD.dataStructure.skiplist.SkiplistSSet;
 import odsD.test;
 
 unittest {
   writeln(__FILE__, ": Some operations");
 
-  auto set = new SkipListSSet!(long, "a<b")();
+  auto set = new SkiplistSSet!(long, "a<b")();
   assert(set.size == 0);
 
   set.add(2);
@@ -40,8 +40,8 @@ unittest {
 unittest {
   writeln(__FILE__, ": Reverse order");
 
-  auto set1 = new SkipListSSet!(long, "a < b")();
-  auto set2 = new SkipListSSet!(long, "a > b")();
+  auto set1 = new SkiplistSSet!(long, "a < b")();
+  auto set2 = new SkiplistSSet!(long, "a > b")();
 
   long n = 1000;
   long[] xs = randomArray!long(n);
@@ -67,7 +67,7 @@ unittest {
     }
   }
 
-  auto set = new SkipListSSet!(Vec, "a.lengthSq < b.lengthSq")();
+  auto set = new SkiplistSSet!(Vec, "a.lengthSq < b.lengthSq")();
 
   assert(set.add(Vec(10, 20)));
   assert(set.add(Vec(0, 0)));
@@ -86,7 +86,7 @@ unittest {
   long n = 1000;
   long[] xs = randomArray!long(n);
 
-  auto set = new SkipListSSet!long();
+  auto set = new SkiplistSSet!long();
   bool[long] aa;
 
   foreach(i, x; xs) {
@@ -107,14 +107,14 @@ unittest {
 unittest {
   writeln(__FILE__, ": Time complexity");
 
-  auto set = new SkipListSSet!long();
+  auto set = new SkiplistSSet!long();
   uint iter = 10^^5;
   auto timeLimit = 2000.msecs;
 
   long[] xs = randomArray!long(iter);
   long[] ys;
 
-  // SkipListSSet should be able to execute `add`, `find`, 'exists' and `popFront` 10^^5 times within 2000 ms because the average time complexity is O(log n)."
+  // SkiplistSSet should be able to execute `add`, `find`, 'exists' and `popFront` 10^^5 times within 2000 ms because the average time complexity is O(log n)."
 
   ys = xs;
   testTimeComplexity!("add", {
