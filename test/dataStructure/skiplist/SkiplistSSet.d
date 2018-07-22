@@ -6,7 +6,7 @@ import odsD.test;
 unittest {
   writeln(__FILE__, ": Some operations");
 
-  auto set = new SkiplistSSet!(long, "a<b")();
+  auto set = new SkiplistSSet!(long, "a < b")();
   assert(set.size == 0);
 
   set.add(2);
@@ -114,7 +114,7 @@ unittest {
   long[] xs = randomArray!long(iter);
   long[] ys;
 
-  // SkiplistSSet should be able to execute `add`, `find`, 'exists' and `removeFront` 10^^5 times within 2000 ms because the average time complexity is O(log n)."
+  // SkiplistSSet should be able to execute `add`, `find`, 'exists' and `remove` 10^^5 times within 2000 ms because the average time complexity is O(log n)."
 
   ys = xs;
   testTimeComplexity!("add", {
