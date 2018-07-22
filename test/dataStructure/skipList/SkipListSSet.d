@@ -103,3 +103,42 @@ unittest {
     assert(set.exists(x) == aa.get(x, false));
   }
 }
+
+unittest {
+  writeln(__FILE__, ": Time complexity");
+
+  auto set = new SkipListSSet!long();
+  uint iter = 10^^5;
+  auto timeLimit = 2000.msecs;
+
+  long[] xs = randomArray!long(iter);
+  long[] ys;
+
+  // SkipListSSet should be able to execute `add`, `find`, 'exists' and `popFront` 10^^5 times within 2000 ms because the average time complexity is O(log n)."
+
+  ys = xs;
+  testTimeComplexity!("add", {
+    set.add(ys[0]);
+    ys = ys[1..$];
+  })(iter, timeLimit);
+
+  ys = xs;
+  testTimeComplexity!("find", {
+    assert(set.find(ys[0]).front == ys[0]);
+    ys = ys[1..$];
+  })(iter, timeLimit);
+
+  ys = xs;
+  testTimeComplexity!("exists", {
+    assert(set.exists(ys[0]));
+    ys = ys[1..$];
+  })(iter, timeLimit);
+
+  ys = xs;
+  testTimeComplexity!("remove", {
+    set.remove(ys[0]);
+    ys = ys[1..$];
+  })(iter, timeLimit);
+
+
+}
