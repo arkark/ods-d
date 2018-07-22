@@ -34,7 +34,7 @@ public:
 
   // O(1 + min(i, n - i)/blockSize)
   T get(size_t i) in {
-    assert(i < n, format!"Attempting to fetch the %sth element of an SEList with size == %s"(i, n));
+    assert(i < n, format!"Attempting to fetch the %sth element of a SEList with size == %s"(i, n));
   } do {
     Location loc = getLocation(i);
     return loc.node.deque.get(loc.index);
@@ -43,7 +43,7 @@ public:
   // O(1 + min(i, n - i)/blockSize)
   // @return: previous ith value
   T set(size_t i, T x) in {
-    assert(i < n, format!"Attempting to fetch the %sth element of an SEList with size == %s"(i, n));
+    assert(i < n, format!"Attempting to fetch the %sth element of a SEList with size == %s"(i, n));
   } do {
     Location loc = getLocation(i);
     T y = loc.node.deque.get(loc.index);
@@ -53,7 +53,7 @@ public:
 
   // amortized O(min(blockSize, n - i) + min(i, n - i)/blockSize)
   void add(size_t i, T x) in {
-    assert(i <= n, format!"Attempting to add %s to the %sth index of an SEList with size == %s"(x, i, n));
+    assert(i <= n, format!"Attempting to add %s to the %sth index of a SEList with size == %s"(x, i, n));
   } do {
     if (i == n) {
       pushBack(x);
@@ -86,7 +86,7 @@ public:
   // amortized O(min(blockSize, n - i) + min(i, n - i)/b)
   // @return: removed value
   T remove(size_t i) in {
-    assert(i < n, format!"Attempting to fetch the %sth element of an SEList with size == %s"(i, n));
+    assert(i < n, format!"Attempting to fetch the %sth element of a SEList with size == %s"(i, n));
   } do {
     Location loc = getLocation(i);
     T y = loc.node.deque.get(loc.index);

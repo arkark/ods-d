@@ -23,7 +23,7 @@ public:
 
   // O(1)
   T get(size_t i) in {
-    assert(i < size, format!"Attempting to fetch the %sth element of an DualArrayDeque with size == %s"(i, size));
+    assert(i < size, format!"Attempting to fetch the %sth element of a DualArrayDeque with size == %s"(i, size));
   } do {
     if (i < frontStack.size) {
       return frontStack.get(frontStack.size - i - 1);
@@ -35,7 +35,7 @@ public:
   // O(1)
   // @return: previous `xs[i]` value
   T set(size_t i, T x) in {
-    assert(i < size, format!"Attempting to fetch the %sth element of an DualArrayDeque with size == %s"(i, size));
+    assert(i < size, format!"Attempting to fetch the %sth element of a DualArrayDeque with size == %s"(i, size));
   } do {
     if (i < frontStack.size) {
       return frontStack.set(frontStack.size - i - 1, x);
@@ -52,7 +52,7 @@ public:
 
   // amortized O(1 + min(i, n-i))
   void add(size_t i, T x) in {
-    assert(i <= size, format!"Attempting to add %s to the %sth index of an DualArrayDeque with size == %s"(x, i, size));
+    assert(i <= size, format!"Attempting to add %s to the %sth index of a DualArrayDeque with size == %s"(x, i, size));
   } do {
     if (i < frontStack.size) {
       frontStack.add(frontStack.size - i, x);
@@ -75,7 +75,7 @@ public:
   // amortized O(1 + min(i, n-i))
   // @return: removed value
   T remove(size_t i) in {
-    assert(i < size, format!"Attempting to fetch the %sth element of an DualArrayDeque with size == %s"(i, size));
+    assert(i < size, format!"Attempting to fetch the %sth element of a DualArrayDeque with size == %s"(i, size));
   } do {
     T x;
     if (i < frontStack.size) {

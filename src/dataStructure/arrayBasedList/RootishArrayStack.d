@@ -23,7 +23,7 @@ public:
 
   // O(1)
   T get(size_t i) in {
-    assert(i < n, format!"Attempting to fetch the %sth element of an RootishArrayStack with size == %s"(i, n));
+    assert(i < n, format!"Attempting to fetch the %sth element of a RootishArrayStack with size == %s"(i, n));
   } do {
     size_t b = i2b(i);
     size_t j = i - b*(b + 1)/2;
@@ -33,7 +33,7 @@ public:
   // O(1)
   // @return: previous `xs[i]` value
   T set(size_t i, T x) in {
-    assert(i < n, format!"Attempting to fetch the %sth element of an RootishArrayStack with size == %s"(i, n));
+    assert(i < n, format!"Attempting to fetch the %sth element of a RootishArrayStack with size == %s"(i, n));
   } do {
     size_t b = i2b(i);
     size_t j = i - b*(b + 1)/2;
@@ -50,7 +50,7 @@ public:
 
   // amortized O(1 + n - i)
   void add(size_t i, T x) in {
-    assert(i <= n, format!"Attempting to add %s to the %sth index of an RootishArrayStack with size == %s"(x, i, n));
+    assert(i <= n, format!"Attempting to add %s to the %sth index of a RootishArrayStack with size == %s"(x, i, n));
   } do {
     size_t r = blocks.size;
     glow();
@@ -64,7 +64,7 @@ public:
   // amortized O(n - i)
   // @return: removed value
   T remove(size_t i) in {
-    assert(i < n, format!"Attempting to fetch the %sth element of an RootishArrayStack with size == %s"(i, n));
+    assert(i < n, format!"Attempting to fetch the %sth element of a RootishArrayStack with size == %s"(i, n));
   } do {
     T x = get(i);
     foreach(j; i+1..n) {

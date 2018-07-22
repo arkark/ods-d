@@ -152,7 +152,7 @@ protected:
       return node is null;
     }
     @property T front() in {
-      assert(!empty, "Attempting to fetch the front of an FindResult of long");
+      assert(!empty, "Attempting to fetch the front of a FindResult of long");
     } body {
       return node.x;
     }

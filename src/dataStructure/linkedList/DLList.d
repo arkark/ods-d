@@ -29,7 +29,7 @@ public:
 
   // O(1 + min(i, n - i))
   T get(size_t i) in {
-    assert(i < n, format!"Attempting to fetch the %sth element of an DLList with size == %s"(i, n));
+    assert(i < n, format!"Attempting to fetch the %sth element of a DLList with size == %s"(i, n));
   } do {
     return getNode(i).x;
   }
@@ -37,7 +37,7 @@ public:
   // O(1 + min(i, n - i))
   // @return: previous ith value
   T set(size_t i, T x) in {
-    assert(i < n, format!"Attempting to fetch the %sth element of an DLList with size == %s"(i, n));
+    assert(i < n, format!"Attempting to fetch the %sth element of a DLList with size == %s"(i, n));
   } do {
     Node u = getNode(i);
     T y = u.x;
@@ -47,7 +47,7 @@ public:
 
   // O(1 + min(i, n - i))
   void add(size_t i, T x) in {
-    assert(i <= n, format!"Attempting to add %s to the %sth index of an DLList with size == %s"(x, i, n));
+    assert(i <= n, format!"Attempting to add %s to the %sth index of a DLList with size == %s"(x, i, n));
   } do {
     addBefore(getNode(i), x);
   }
@@ -55,7 +55,7 @@ public:
   // O(1 + min(i, n - i))
   // @return: removed value
   T remove(size_t i) in {
-    assert(i < n, format!"Attempting to fetch the %sth element of an DLList with size == %s"(i, n));
+    assert(i < n, format!"Attempting to fetch the %sth element of a DLList with size == %s"(i, n));
   } do {
     Node w = getNode(i);
     T x = w.x;
