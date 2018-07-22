@@ -1,8 +1,9 @@
 module odsD.dataStructure.linkedList.DLList;
 
+import std.format;
+
 // Doubly-Linked List
 class DLList(T) {
-  import std.format;
 
 protected:
   Node dummy;

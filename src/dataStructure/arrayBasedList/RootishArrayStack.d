@@ -1,9 +1,10 @@
 module odsD.dataStructure.arrayBasedList.RootishArrayStack;
 
+import odsD.dataStructure.arrayBasedList.ArrayStack;
+import std.format;
+import std.math;
+
 class RootishArrayStack(T) {
-  import odsD.dataStructure.arrayBasedList.ArrayStack;
-  import std.math : sqrt, ceil;
-  import std.format;
 
 protected:
   ArrayStack!(T[]) blocks = new ArrayStack!(T[])();

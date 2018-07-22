@@ -1,9 +1,10 @@
 module odsD.dataStructure.linkedList.SEList;
 
+import odsD.dataStructure.arrayBasedList.ArrayDeque;
+import std.format;
+
 // Space-Efficient List (Unrolled Linked List)
 class SEList(T) {
-  import odsD.dataStructure.arrayBasedList.ArrayDeque;
-  import std.format;
 
 protected:
   Node dummy;

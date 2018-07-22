@@ -1,9 +1,10 @@
 module odsD.dataStructure.arrayBasedList.DualArrayDeque;
 
+import odsD.dataStructure.arrayBasedList.ArrayStack;
+import std.format;
+import std.algorithm;
+
 class DualArrayDeque(T) {
-  import odsD.dataStructure.arrayBasedList.ArrayStack;
-  import std.algorithm : max;
-  import std.format;
 
 protected:
   ArrayStack!T frontStack = new ArrayStack!T();

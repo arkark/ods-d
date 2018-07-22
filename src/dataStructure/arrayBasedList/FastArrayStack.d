@@ -1,9 +1,10 @@
 module odsD.dataStructure.arrayBasedList.FastArrayStack;
 
+import std.format;
+import std.algorithm;
+import core.stdc.string : memcpy, memmove;
+
 class FastArrayStack(T) {
-  import core.stdc.string : memcpy, memmove;
-  import std.algorithm : min, max;
-  import std.format;
 
 protected:
   T[] xs;

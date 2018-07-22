@@ -1,8 +1,9 @@
 module odsD.dataStructure.arrayBasedList.ArrayDeque;
 
+import std.format;
+import std.algorithm;
+
 class ArrayDeque(T) {
-  import std.algorithm : max;
-  import std.format;
 
 protected:
   T[] xs;

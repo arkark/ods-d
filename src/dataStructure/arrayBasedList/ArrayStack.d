@@ -1,8 +1,9 @@
 module odsD.dataStructure.arrayBasedList.ArrayStack;
 
+import std.format;
+import std.algorithm;
+
 class ArrayStack(T) {
-  import std.algorithm : max;
-  import std.format;
 
 protected:
   T[] xs;

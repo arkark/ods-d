@@ -1,8 +1,9 @@
 module odsD.dataStructure.linkedList.SLList;
 
+import std.format;
+
 // Singly-Linked List
 class SLList(T) {
-  import std.format;
 
 protected:
   Node head;
