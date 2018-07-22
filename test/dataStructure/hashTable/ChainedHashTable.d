@@ -14,12 +14,12 @@ unittest {
   set.add(4);
   assert(set.size == 3);
 
-  auto r1 = set.find(2);
-  assert(r1.equal([2]));
-  auto r2 = set.find(5);
-  assert(r2.equal([5]));
-  auto r3 = set.find(10);
-  assert(r3.empty);
+  auto m1 = set.find(2);
+  assert(m1.isJust && m1.get == 2);
+  auto m2 = set.find(5);
+  assert(m2.isJust && m2.get == 5);
+  auto m3 = set.find(10);
+  assert(m3.isNone);
 
   assert(set.add(100));
   assert(!set.add(2)); // 2 already exists
@@ -78,7 +78,7 @@ unittest {
 
   ys = xs;
   testTimeComplexity!("find", {
-    assert(set.find(ys[0]).front == ys[0]);
+    assert(set.find(ys[0]).get == ys[0]);
     ys = ys[1..$];
   })(iter, timeLimit);
 

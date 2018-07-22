@@ -1,9 +1,8 @@
 module odsD.dataStructure.hashTable.ChainedHashTable;
 
+import odsD.util.Maybe;
 import std.algorithm;
-import std.range;
 import std.random;
-import std.traits;
 import std.container : DList;
 
 class ChainedHashTable(T)
@@ -68,18 +67,15 @@ public:
   }
 
   // average O(1)
-  // @return:
-  //   InputRange(x)  ... if x exists
-  //   InputRange() ... if x doesn't exist
-  auto find(T x) {
+  Maybe!T find(T x) {
     size_t j = hash(x);
-    return table[j][].find(x).take(1);
+    auto r = table[j][].find(x);
+    return r.empty ? None!T() : Just(r.front);
   }
-  static assert(isInputRange!(ReturnType!find));
 
   // average O(1)
   bool exists(T x) {
-    return !find(x).empty;
+    return find(x).isJust;
   }
 
 protected:

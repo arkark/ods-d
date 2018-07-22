@@ -1,8 +1,7 @@
 module odsD.dataStructure.hashTable.LinearHashTable;
 
-import std.range;
+import odsD.util.Maybe;
 import std.random;
-import std.traits;
 
 class LinearHashTable(T)
 if(is(typeof(T.init.hashOf()))) {
@@ -84,24 +83,20 @@ public:
   }
 
   // average O(1)
-  // @return:
-  //   InputRange(x)  ... if x exists
-  //   InputRange() ... if x doesn't exist
-  auto find(T x) {
+  Maybe!T find(T x) {
     size_t i = hash(x);
     while(table[i] !is null) {
       if (table[i] !is del && table[i].x == x) {
-        return FindResult(table[i]);
+        return Just(table[i].x);
       }
       i = (i + 1)%table.length;
     }
-    return FindResult(null);
+    return None!T();
   }
-  static assert(isInputRange!(ReturnType!find));
 
   // average O(1)
   bool exists(T x) {
-    return !find(x).empty;
+    return find(x).isJust;
   }
 
 protected:
@@ -137,26 +132,6 @@ protected:
     this() {}
     this(T x) {
       this.x = x;
-    }
-  }
-
-  struct FindResult {
-  private:
-    Node node;
-  public:
-    this(Node node) {
-      this.node = node;
-    }
-    @property bool empty() {
-      return node is null;
-    }
-    @property T front() in {
-      assert(!empty, "Attempting to fetch the front of a FindResult of long");
-    } body {
-      return node.x;
-    }
-    void popFront() {
-      node = null;
     }
   }
 }
