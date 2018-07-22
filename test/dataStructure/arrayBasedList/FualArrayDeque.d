@@ -9,9 +9,9 @@ unittest {
   auto deque = new DualArrayDeque!long();
   assert(deque.size == 0);
 
-  deque.pushBack(2);
-  deque.pushBack(5);
-  deque.pushFront(3);
+  deque.insertBack(2);
+  deque.insertBack(5);
+  deque.insertFront(3);
   assert(deque.size == 3);
   assert(deque.get(0) == 3 && deque.get(1) == 2 && deque.get(2) == 5);
 
@@ -23,11 +23,11 @@ unittest {
   assert(deque.size == 3);
   assert(deque.get(0) == 10 && deque.get(1) == 3 && deque.get(2) == 5);
 
-  assert(deque.popFront() == 10);
+  assert(deque.removeFront() == 10);
   assert(deque.size == 2);
   assert(deque.get(0) == 3 && deque.get(1) == 5);
 
-  assert(deque.popBack() == 5);
+  assert(deque.removeBack() == 5);
   assert(deque.size == 1);
   assert(deque.get(0) == 3);
 
@@ -36,14 +36,14 @@ unittest {
 }
 
 unittest {
-  writeln(__FILE__, ": Random `pushFront`");
+  writeln(__FILE__, ": Random `insertFront`");
 
   auto deque = new DualArrayDeque!long();
   long n = 1000;
   long[] xs = randomArray!long(n);
 
   foreach(i; 0..n) {
-    deque.pushFront(xs[i]);
+    deque.insertFront(xs[i]);
     assert(deque.size == i+1);
     assert(deque.get(0) == xs[i]);
   }
@@ -53,14 +53,14 @@ unittest {
 }
 
 unittest {
-  writeln(__FILE__, ": Random `pushBack`");
+  writeln(__FILE__, ": Random `insertBack`");
 
   auto deque = new DualArrayDeque!long();
   long n = 1000;
   long[] xs = randomArray!long(n);
 
   foreach(i; 0..n) {
-    deque.pushBack(xs[i]);
+    deque.insertBack(xs[i]);
     assert(deque.size == i+1);
     assert(deque.get(i) == xs[i]);
   }
@@ -70,33 +70,33 @@ unittest {
 }
 
 unittest {
-  writeln(__FILE__, ": Random `popFront`");
+  writeln(__FILE__, ": Random `removeFront`");
 
   auto deque = new DualArrayDeque!long();
   long n = 1000;
   long[] xs = randomArray!long(n);
 
   foreach(i; 0..n) {
-    deque.pushBack(xs[i]);
+    deque.insertBack(xs[i]);
   }
   foreach(i; 0..n) {
-    assert(deque.popFront() == xs[i]);
+    assert(deque.removeFront() == xs[i]);
     assert(deque.size == n-i-1);
   }
 }
 
 unittest {
-  writeln(__FILE__, ": Random `popBack`");
+  writeln(__FILE__, ": Random `removeBack`");
 
   auto deque = new DualArrayDeque!long();
   long n = 1000;
   long[] xs = randomArray!long(n);
 
   foreach(i; 0..n) {
-    deque.pushBack(xs[i]);
+    deque.insertBack(xs[i]);
   }
   foreach(i; 0..n) {
-    assert(deque.popBack() == xs[n-i-1]);
+    assert(deque.removeBack() == xs[n-i-1]);
     assert(deque.size == n-i-1);
   }
 }
@@ -110,7 +110,7 @@ unittest {
   long[] xs2 = randomArray!long(n);
 
   foreach(i; 0..n) {
-    deque.pushBack(xs1[i]);
+    deque.insertBack(xs1[i]);
   }
   foreach(i; 0..n) {
     assert(deque.set(i, xs2[i]) == xs1[i]);
@@ -146,9 +146,9 @@ unittest {
   uint iter = 10^^6;
   auto timeLimit = 2000.msecs;
 
-  // DualArrayDeque should be able to execute `pushFront`, `pushBack`, `popFront` and `popBack` 10^^6 times within 2000 ms because the time complexity is amortized O(1)."
-  testTimeComplexity!("pushFront", () => deque.pushFront(0))(iter, timeLimit);
-  testTimeComplexity!("popFront", () => deque.popFront())(iter, timeLimit);
-  testTimeComplexity!("pushBack", () => deque.pushBack(0))(iter, timeLimit);
-  testTimeComplexity!("popBack", () => deque.popBack())(iter, timeLimit);
+  // DualArrayDeque should be able to execute `insertFront`, `insertBack`, `removeFront` and `removeBack` 10^^6 times within 2000 ms because the time complexity is amortized O(1)."
+  testTimeComplexity!("insertFront", () => deque.insertFront(0))(iter, timeLimit);
+  testTimeComplexity!("removeFront", () => deque.removeFront())(iter, timeLimit);
+  testTimeComplexity!("insertBack", () => deque.insertBack(0))(iter, timeLimit);
+  testTimeComplexity!("removeBack", () => deque.removeBack())(iter, timeLimit);
 }

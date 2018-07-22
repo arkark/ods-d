@@ -56,7 +56,7 @@ public:
     assert(i <= n, format!"Attempting to add %s to the %sth index of a SEList with size == %s"(x, i, n));
   } do {
     if (i == n) {
-      pushBack(x);
+      insertBack(x);
       return;
     }
 
@@ -75,7 +75,7 @@ public:
       node = addBefore(node);
     }
     while(node !is loc.node) {
-      node.deque.pushFront(node.prev.deque.popBack());
+      node.deque.insertFront(node.prev.deque.removeBack());
       node = node.prev;
     }
     node.deque.add(loc.index, x);
@@ -103,7 +103,7 @@ public:
     node = loc.node;
     node.deque.remove(loc.index);
     while(node.deque.size < blockSize-1 && node.next !is dummy) {
-      node.deque.pushBack(node.next.deque.popFront());
+      node.deque.insertBack(node.next.deque.removeFront());
       node = node.next;
     }
     if (node.deque.size == 0) {
@@ -115,29 +115,29 @@ public:
   }
 
   // amortized O(blockSize)
-  void pushFront(T x) {
+  void insertFront(T x) {
     add(0, x);
   }
 
   // amortized O(1)
-  void pushBack(T x) {
+  void insertBack(T x) {
     Node last = dummy.prev;
     if (last is dummy || last.deque.size == blockSize+1) {
       last = addBefore(dummy);
     }
-    last.deque.pushBack(x);
+    last.deque.insertBack(x);
     n++;
   }
 
   // amortized O(blockSize)
-  T popFront() in {
+  T removeFront() in {
     assert(n > 0, "Attempting to fetch the front of an empty SEList");
   } do {
     return remove(0);
   }
 
   // amortized O(1)
-  T popBack() in {
+  T removeBack() in {
     assert(n > 0, "Attempting to fetch the back of an empty SEList");
   } do {
     return remove(n-1);
@@ -188,7 +188,7 @@ protected:
     node = addBefore(node);
     while(node != first) {
       while(node.deque.size < blockSize) {
-        node.deque.pushFront(node.prev.deque.popBack());
+        node.deque.insertFront(node.prev.deque.removeBack());
       }
       node = node.prev;
     }
@@ -198,7 +198,7 @@ protected:
   void gather(Node node) {
     foreach(_; 0..blockSize-1) {
       while(node.deque.size < blockSize) {
-        node.deque.pushBack(node.next.deque.popFront());
+        node.deque.insertBack(node.next.deque.removeFront());
       }
       node = node.next;
     }

@@ -64,24 +64,24 @@ public:
   }
 
   // O(1)
-  void pushFront(T x) {
+  void insertFront(T x) {
     add(0, x);
   }
 
   // O(1)
-  void pushBack(T x) {
+  void insertBack(T x) {
     add(n, x);
   }
 
   // O(1)
-  T popFront() in {
+  T removeFront() in {
     assert(n > 0, "Attempting to fetch the front of an empty DLList");
   } do {
     return remove(0);
   }
 
   // O(1)
-  T popBack() in {
+  T removeBack() in {
     assert(n > 0, "Attempting to fetch the back of an empty DLList");
   } do {
     return remove(n-1);

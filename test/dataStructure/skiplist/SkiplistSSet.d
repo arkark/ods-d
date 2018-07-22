@@ -114,7 +114,7 @@ unittest {
   long[] xs = randomArray!long(iter);
   long[] ys;
 
-  // SkiplistSSet should be able to execute `add`, `find`, 'exists' and `popFront` 10^^5 times within 2000 ms because the average time complexity is O(log n)."
+  // SkiplistSSet should be able to execute `add`, `find`, 'exists' and `removeFront` 10^^5 times within 2000 ms because the average time complexity is O(log n)."
 
   ys = xs;
   testTimeComplexity!("add", {

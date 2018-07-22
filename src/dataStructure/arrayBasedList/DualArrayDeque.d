@@ -63,12 +63,12 @@ public:
   }
 
   // amortized O(1)
-  void pushFront(T x) {
+  void insertFront(T x) {
     add(0, x);
   }
 
   // amortized O(1)
-  void pushBack(T x) {
+  void insertBack(T x) {
     add(size, x);
   }
 
@@ -88,14 +88,14 @@ public:
   }
 
   // amortized O(1)
-  T popFront() in {
+  T removeFront() in {
     assert(size > 0, "Attempting to fetch the front of an empty DualArrayDeque");
   } do {
     return remove(0);
   }
 
   // amortized O(1)
-  T popBack() in {
+  T removeBack() in {
     assert(size > 0, "Attempting to fetch the back of an empty DualArrayDeque");
   } do {
     return remove(size - 1);

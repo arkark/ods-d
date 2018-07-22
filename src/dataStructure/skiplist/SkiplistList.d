@@ -93,18 +93,18 @@ public:
   }
 
   // average O(log n)
-  void pushFront(T x) {
+  void insertFront(T x) {
     add(0, x);
   }
 
   // average O(log n)
-  void pushBack(T x) {
+  void insertBack(T x) {
     add(n, x);
   }
 
   // average O(log n)
   // @return: removed value
-  T popFront() in {
+  T removeFront() in {
     assert(n > 0, "Attempting to fetch the front of an empty SkiplistList");
   } body {
     return remove(0);
@@ -112,7 +112,7 @@ public:
 
   // average O(log n)
   // @return: removed value
-  T popBack() in {
+  T removeBack() in {
     assert(n > 0, "Attempting to fetch the back of an empty SkiplistList");
   } body {
     return remove(n - 1);

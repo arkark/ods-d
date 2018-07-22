@@ -38,7 +38,7 @@ public:
     }
     n++;
   }
-  alias pushFront = push;
+  alias insertFront = push;
 
   // O(1)
   // @return: removed value
@@ -53,7 +53,7 @@ public:
     return x;
   }
   alias remove = pop;
-  alias popFront = pop;
+  alias removeFront = pop;
 
   // O(1)
   void add(T x) {
@@ -66,7 +66,7 @@ public:
     tail = node;
     n++;
   }
-  alias pushBack = add;
+  alias insertBack = add;
 
 protected:
   class Node {

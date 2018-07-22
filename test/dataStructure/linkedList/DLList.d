@@ -9,9 +9,9 @@ unittest {
   auto list = new DLList!long();
   assert(list.size == 0);
 
-  list.pushBack(2); // -> [2]
-  list.pushBack(5); // -> [2, 5]
-  list.pushFront(3); // -> [3, 2, 5]
+  list.insertBack(2); // -> [2]
+  list.insertBack(5); // -> [2, 5]
+  list.insertFront(3); // -> [3, 2, 5]
   assert(list.size == 3);
   assert(list.get(0) == 3 && list.get(1) == 2 && list.get(2) == 5);
 
@@ -23,11 +23,11 @@ unittest {
   assert(list.size == 3);
   assert(list.get(0) == 10 && list.get(1) == 3 && list.get(2) == 5);
 
-  assert(list.popFront() == 10); // -> [3, 5]
+  assert(list.removeFront() == 10); // -> [3, 5]
   assert(list.size == 2);
   assert(list.get(0) == 3 && list.get(1) == 5);
 
-  assert(list.popBack() == 5); // -> [3]
+  assert(list.removeBack() == 5); // -> [3]
   assert(list.size == 1);
   assert(list.get(0) == 3);
 
@@ -36,14 +36,14 @@ unittest {
 }
 
 unittest {
-  writeln(__FILE__, ": Random `pushFront`");
+  writeln(__FILE__, ": Random `insertFront`");
 
   auto list = new DLList!long();
   long n = 1000;
   long[] xs = randomArray!long(n);
 
   foreach(i; 0..n) {
-    list.pushFront(xs[i]);
+    list.insertFront(xs[i]);
     assert(list.size == i+1);
     assert(list.get(0) == xs[i]);
   }
@@ -53,14 +53,14 @@ unittest {
 }
 
 unittest {
-  writeln(__FILE__, ": Random `pushBack`");
+  writeln(__FILE__, ": Random `insertBack`");
 
   auto list = new DLList!long();
   long n = 1000;
   long[] xs = randomArray!long(n);
 
   foreach(i; 0..n) {
-    list.pushBack(xs[i]);
+    list.insertBack(xs[i]);
     assert(list.size == i+1);
     assert(list.get(i) == xs[i]);
   }
@@ -70,33 +70,33 @@ unittest {
 }
 
 unittest {
-  writeln(__FILE__, ": Random `popFront`");
+  writeln(__FILE__, ": Random `removeFront`");
 
   auto list = new DLList!long();
   long n = 1000;
   long[] xs = randomArray!long(n);
 
   foreach(i; 0..n) {
-    list.pushBack(xs[i]);
+    list.insertBack(xs[i]);
   }
   foreach(i; 0..n) {
-    assert(list.popFront() == xs[i]);
+    assert(list.removeFront() == xs[i]);
     assert(list.size == n-i-1);
   }
 }
 
 unittest {
-  writeln(__FILE__, ": Random `popBack`");
+  writeln(__FILE__, ": Random `removeBack`");
 
   auto list = new DLList!long();
   long n = 1000;
   long[] xs = randomArray!long(n);
 
   foreach(i; 0..n) {
-    list.pushBack(xs[i]);
+    list.insertBack(xs[i]);
   }
   foreach(i; 0..n) {
-    assert(list.popBack() == xs[n-i-1]);
+    assert(list.removeBack() == xs[n-i-1]);
     assert(list.size == n-i-1);
   }
 }
@@ -110,7 +110,7 @@ unittest {
   long[] xs2 = randomArray!long(n);
 
   foreach(i; 0..n) {
-    list.pushBack(xs1[i]);
+    list.insertBack(xs1[i]);
   }
   foreach(i; 0..n) {
     assert(list.set(i, xs2[i]) == xs1[i]);
@@ -146,9 +146,9 @@ unittest {
   uint iter = 10^^6;
   auto timeLimit = 2000.msecs;
 
-  // DLList should be able to execute `pushFront`, `pushBack`, `popFront` and `popBack` 10^^6 times within 2000 ms because the time complexity is O(1)."
-  testTimeComplexity!("pushFront", () => list.pushFront(0))(iter, timeLimit);
-  testTimeComplexity!("popFront", () => list.popFront())(iter, timeLimit);
-  testTimeComplexity!("pushBack", () => list.pushBack(0))(iter, timeLimit);
-  testTimeComplexity!("popBack", () => list.popBack())(iter, timeLimit);
+  // DLList should be able to execute `insertFront`, `insertBack`, `removeFront` and `removeBack` 10^^6 times within 2000 ms because the time complexity is O(1)."
+  testTimeComplexity!("insertFront", () => list.insertFront(0))(iter, timeLimit);
+  testTimeComplexity!("removeFront", () => list.removeFront())(iter, timeLimit);
+  testTimeComplexity!("insertBack", () => list.insertBack(0))(iter, timeLimit);
+  testTimeComplexity!("removeBack", () => list.removeBack())(iter, timeLimit);
 }

@@ -9,14 +9,14 @@ unittest {
   auto list = new SLList!long();
   assert(list.size == 0);
 
-  list.pushFront(2); // pop -> [2]
-  list.pushFront(5); // pop -> [5, 2]
-  list.pushBack(3);  // add -> [5, 2, 3]
+  list.insertFront(2); // pop -> [2]
+  list.insertFront(5); // pop -> [5, 2]
+  list.insertBack(3);  // add -> [5, 2, 3]
   assert(list.size == 3);
 
-  assert(list.popFront() == 5);
-  assert(list.popFront() == 2);
-  assert(list.popFront() == 3);
+  assert(list.removeFront() == 5);
+  assert(list.removeFront() == 2);
+  assert(list.removeFront() == 3);
   assert(list.size == 0);
 
   list.push(1000);
@@ -26,35 +26,35 @@ unittest {
 }
 
 unittest {
-  writeln(__FILE__, ": Random `pushFront`");
+  writeln(__FILE__, ": Random `insertFront`");
 
   auto list = new SLList!long();
   long n = 1000;
   long[] xs = randomArray!long(n);
 
   foreach(i; 0..n) {
-    list.pushFront(xs[i]);
+    list.insertFront(xs[i]);
     assert(list.size == i+1);
   }
   foreach(i; 0..n) {
-    assert(list.popFront() == xs[n-i-1]);
+    assert(list.removeFront() == xs[n-i-1]);
   }
   assert(list.size == 0);
 }
 
 unittest {
-  writeln(__FILE__, ": Random `pushBack`");
+  writeln(__FILE__, ": Random `insertBack`");
 
   auto list = new SLList!long();
   long n = 1000;
   long[] xs = randomArray!long(n);
 
   foreach(i; 0..n) {
-    list.pushBack(xs[i]);
+    list.insertBack(xs[i]);
     assert(list.size == i+1);
   }
   foreach(i; 0..n) {
-    assert(list.popFront() == xs[i]);
+    assert(list.removeFront() == xs[i]);
   }
   assert(list.size == 0);
 }
@@ -66,9 +66,9 @@ unittest {
   uint iter = 10^^6;
   auto timeLimit = 2000.msecs;
 
-  // SLList should be able to execute `pushFront`, `pushBack` and `popFront` 10^^6 times within 2000 ms because the time complexity is O(1)."
-  testTimeComplexity!("pushFront", () => list.pushFront(0))(iter, timeLimit);
-  testTimeComplexity!("popFront", () => list.popFront())(iter, timeLimit);
-  testTimeComplexity!("pushBack", () => list.pushBack(0))(iter, timeLimit);
-  testTimeComplexity!("popFront", () => list.popFront())(iter, timeLimit);
+  // SLList should be able to execute `insertFront`, `insertBack` and `removeFront` 10^^6 times within 2000 ms because the time complexity is O(1)."
+  testTimeComplexity!("insertFront", () => list.insertFront(0))(iter, timeLimit);
+  testTimeComplexity!("removeFront", () => list.removeFront())(iter, timeLimit);
+  testTimeComplexity!("insertBack", () => list.insertBack(0))(iter, timeLimit);
+  testTimeComplexity!("removeFront", () => list.removeFront())(iter, timeLimit);
 }
