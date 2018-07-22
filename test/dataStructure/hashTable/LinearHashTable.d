@@ -1,12 +1,12 @@
-module odsD.test.dataStructure.hashTable.ChainedHashTable;
+module odsD.test.dataStructure.hashTable.LinearHashTable;
 
-import odsD.dataStructure.hashTable.ChainedHashTable;
+import odsD.dataStructure.hashTable.LinearHashTable;
 import odsD.test;
 
 unittest {
   writeln(__FILE__, ": Some operations");
 
-  auto set = new ChainedHashTable!long();
+  auto set = new LinearHashTable!long();
   assert(set.size == 0);
 
   set.add(2);
@@ -41,7 +41,7 @@ unittest {
   long n = 1000;
   long[] xs = randomArray!long(n);
 
-  auto set = new ChainedHashTable!long();
+  auto set = new LinearHashTable!long();
   bool[long] aa;
 
   foreach(i, x; xs) {
@@ -61,14 +61,14 @@ unittest {
 unittest {
   writeln(__FILE__, ": Time complexity");
 
-  auto set = new ChainedHashTable!long();
+  auto set = new LinearHashTable!long();
   uint iter = 10^^6;
   auto timeLimit = 2000.msecs;
 
   long[] xs = randomArray!long(iter);
   long[] ys;
 
-  // ChainedHashTable should be able to execute `add`, `find`, 'exists' and `remove` 10^^6 times within 2000 ms because the average time complexity is amortized and average O(1)."
+  // LinearHashTable should be able to execute `add`, `find`, 'exists' and `remove` 10^^6 times within 2000 ms because the average time complexity is amortized and average O(1)."
 
   ys = xs;
   testTimeComplexity!("add", {

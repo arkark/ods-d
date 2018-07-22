@@ -15,7 +15,7 @@ protected:
 
   DList!T[] table;
   size_t n;
-  size_t d;
+  size_t d; // 1<<d == table.length
 
 public:
   this() {
@@ -67,7 +67,7 @@ public:
     return removed;
   }
 
-  // amortized and average O(1)
+  // average O(1)
   // @return:
   //   InputRange(x)  ... if x exists
   //   InputRange() ... if x doesn't exist
@@ -77,7 +77,7 @@ public:
   }
   static assert(isInputRange!(ReturnType!find));
 
-  // amortized and average O(1)
+  // average O(1)
   bool exists(T x) {
     return !find(x).empty;
   }

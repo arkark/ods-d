@@ -99,7 +99,6 @@ unittest {
   }
 
   foreach(x; xs) {
-    import std.conv;
     assert(set.exists(x) == aa.get(x, false));
   }
 }
