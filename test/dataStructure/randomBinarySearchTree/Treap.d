@@ -1,12 +1,12 @@
-module odsD.test.dataStructure.binaryTree.BinarySearchTree;
+module odsD.test.dataStructure.randomBinarySearchTree.Treap;
 
-import odsD.dataStructure.binaryTree.BinarySearchTree;
+import odsD.dataStructure.randomBinarySearchTree.Treap;
 import odsD.test;
 
 unittest {
   writeln(__FILE__, ": Some operations");
 
-  auto tree = new BinarySearchTree!(long, "a < b")();
+  auto tree = new Treap!(long, "a < b")();
   assert(tree.size == 0);
 
   tree.add(2);
@@ -53,7 +53,7 @@ unittest {
     }
   }
 
-  auto tree = new BinarySearchTree!(Vec, "a.lengthSq < b.lengthSq")();
+  auto tree = new Treap!(Vec, "a.lengthSq < b.lengthSq")();
 
   assert(tree.add(Vec(10, 20)));
   assert(tree.add(Vec(0, 0)));
@@ -72,7 +72,7 @@ unittest {
   long n = 1000;
   long[] xs = randomArray!long(n);
 
-  auto tree = new BinarySearchTree!long();
+  auto tree = new Treap!long();
   bool[long] aa;
 
   foreach(i, x; xs) {
@@ -87,4 +87,42 @@ unittest {
   foreach(x; xs) {
     assert(tree.exists(x) == aa.get(x, false));
   }
+}
+
+unittest {
+  writeln(__FILE__, ": Time complexity");
+
+  auto tree = new Treap!long();
+  uint iter = 10^^5;
+  auto timeLimit = 2000.msecs;
+
+  long[] xs = randomArray!long(iter);
+  long[] ys;
+
+  // Treap should be able to execute `add`, `find`, 'exists' and `remove` 10^^5 times within 2000 ms because the average time complexity is O(log n)."
+
+  ys = xs;
+  testTimeComplexity!("add", {
+    tree.add(ys[0]);
+    ys = ys[1..$];
+  })(iter, timeLimit);
+
+  ys = xs;
+  testTimeComplexity!("find", {
+    assert(tree.findEQ(ys[0]).get == ys[0]);
+    ys = ys[1..$];
+  })(iter, timeLimit);
+
+  ys = xs;
+  testTimeComplexity!("exists", {
+    assert(tree.exists(ys[0]));
+    ys = ys[1..$];
+  })(iter, timeLimit);
+
+  ys = xs;
+  testTimeComplexity!("remove", {
+    tree.remove(ys[0]);
+    ys = ys[1..$];
+  })(iter, timeLimit);
+
 }
