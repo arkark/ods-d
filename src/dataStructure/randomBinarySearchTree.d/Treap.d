@@ -48,7 +48,7 @@ public:
     return None!T;
   }
 
-  // aberage O(log n)
+  // average O(log n)
   // @return: min{ y \in this | y >= x }
   Maybe!T find(T x) {
     Node node = root;
@@ -66,7 +66,7 @@ public:
     return result;
   }
 
-  // aberage O(n)
+  // average O(log n)
   bool exists(T x) {
     return findEQ(x).isJust;
   }
@@ -237,7 +237,7 @@ protected:
 
     n--;
   }
-  
+
   Node createNode(T x) {
     Node node = new Node;
     node.x = x;
