@@ -15,7 +15,7 @@ Maybe!T None(T)() {
 struct Maybe(T) {
 
 private:
-  T value;
+  T value = T.init;
   bool _isJust = false;
 
 package:
