@@ -11,14 +11,14 @@ protected:
   alias _less = binaryFun!less;
   alias _eq = (a, b) => !_less(a, b) && !_less(b, a);
 
-  BTNode nil;
-  BTNode root;
+  Node nil;
+  Node root;
 
   size_t n;
 
 public:
   this() {
-    nil = new BTNode;
+    nil = new Node;
     clear();
   }
 
@@ -33,7 +33,7 @@ public:
 
   // O(n)
   Maybe!T findEQ(T x) {
-    BTNode node = root;
+    Node node = root;
     while(node !is nil) {
       if (_less(x, node.x)) {
         node = node.left;
@@ -49,7 +49,7 @@ public:
   // O(n)
   // @return: min{ y \in this | y >= x }
   Maybe!T find(T x) {
-    BTNode node = root;
+    Node node = root;
     Maybe!T result = None!T;
     while(node !is nil) {
       if (_less(x, node.x)) {
@@ -74,7 +74,7 @@ public:
   //   true  ... if x was added successfully
   //   false ... if x already exists
   bool add(T x) {
-    BTNode parent = findLast(x);
+    Node parent = findLast(x);
     return addChild(parent, createNode(x));
   }
 
@@ -83,7 +83,7 @@ public:
   //   true  ... if x was removed successfully
   //   false ... if x didn't exist
   bool remove(T x) {
-    BTNode node = findLast(x);
+    Node node = findLast(x);
     if (node !is nil && _eq(node.x, x)) {
       remove(node);
       return true;
@@ -93,9 +93,9 @@ public:
   }
 
 protected:
-  BTNode findLast(T x) {
-    BTNode node = root;
-    BTNode prev = nil;
+  Node findLast(T x) {
+    Node node = root;
+    Node prev = nil;
     while(node !is nil) {
       prev = node;
       if (_less(x, node.x)) {
@@ -109,7 +109,7 @@ protected:
     return prev;
   }
 
-  bool addChild(BTNode parent, BTNode child) in {
+  bool addChild(Node parent, Node child) in {
     assert(child !is null && child !is nil);
   } do {
     if (parent is nil) {
@@ -128,11 +128,11 @@ protected:
     return true;
   }
 
-  void splice(BTNode node) in {
+  void splice(Node node) in {
     assert(node !is null && node !is nil);
   } do {
-    BTNode child = node.left !is nil ? node.left : node.right;
-    BTNode parent;
+    Node child = node.left !is nil ? node.left : node.right;
+    Node parent;
     if (node is root) {
       root = child;
       parent = nil;
@@ -151,11 +151,11 @@ protected:
     n--;
   }
 
-  void remove(BTNode node) {
+  void remove(Node node) {
     if (node.left is nil || node.right is nil) {
       splice(node);
     } else {
-      BTNode leaf = node.right;
+      Node leaf = node.right;
       while(leaf.left !is nil) {
         leaf = leaf.left;
       }
@@ -164,8 +164,8 @@ protected:
     }
   }
 
-  BTNode createNode(T x) {
-    BTNode node = new BTNode;
+  Node createNode(T x) {
+    Node node = new Node;
     node.x = x;
     node.parent = nil;
     node.left = nil;
@@ -173,11 +173,11 @@ protected:
     return node;
   }
 
-  class BTNode {
+  class Node {
     T x;
-    BTNode parent;
-    BTNode left;
-    BTNode right;
+    Node parent;
+    Node left;
+    Node right;
     this() {
       x = T.init;
     }
