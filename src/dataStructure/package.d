@@ -7,4 +7,5 @@ public {
   import odsD.dataStructure.hashTable;
   import odsD.dataStructure.binaryTree;
   import odsD.dataStructure.randomBinarySearchTree;
+  import odsD.dataStructure.scapegoatTree;
 }
