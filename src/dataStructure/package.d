@@ -8,4 +8,5 @@ public {
   import odsD.dataStructure.binaryTree;
   import odsD.dataStructure.randomBinarySearchTree;
   import odsD.dataStructure.scapegoatTree;
+  import odsD.dataStructure.redBlackTree;
 }
