@@ -1,6 +1,7 @@
 # ods-d [WIP]
 
 [![Build Status](https://travis-ci.com/ArkArk/ods-d.svg?branch=master)](https://travis-ci.com/ArkArk/ods-d)
+[![codecov.io](https://codecov.io/gh/ArkArk/ods-d/coverage.svg?branch=master)](https://codecov.io/gh/ArkArk/ods-d)
 
 D implementation of data structures in Open Data Structures (ODS).
 
