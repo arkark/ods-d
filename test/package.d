@@ -7,7 +7,7 @@ public {
   import std.stdio : writeln;
   import std.format : format;
   import std.datetime : msecs;
-  import std.algorithm : equal;
+  import std.algorithm : equal, sort;
 }
 
 Duration benchmark(alias fun)(uint iter) {

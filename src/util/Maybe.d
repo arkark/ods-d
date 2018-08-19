@@ -1,17 +1,5 @@
 module odsD.util.Maybe;
 
-Maybe!T Just(T)(T value) in {
-  static if (is(typeof(value is null))) {
-    assert(value !is null);
-  }
-} do {
-  return Maybe!T(value);
-}
-
-Maybe!T None(T)() {
-  return Maybe!T();
-}
-
 struct Maybe(T) {
 
 private:
@@ -39,4 +27,16 @@ public:
     return value;
   }
 
+}
+
+Maybe!T Just(T)(T value) in {
+  static if (is(typeof(value is null))) {
+    assert(value !is null);
+  }
+} do {
+  return Maybe!T(value);
+}
+
+Maybe!T None(T)() {
+  return Maybe!T();
 }
