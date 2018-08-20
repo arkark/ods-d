@@ -22,7 +22,8 @@ unittest {
   heap.add(100);
   heap.add(3);
   assert(heap.size == 2);
-  assert(heap.remove() == 3);
+  assert(heap.front() == 3);
+  assert(heap.size == 2);
 
   heap.clear();
   assert(heap.size == 0);
@@ -50,6 +51,7 @@ unittest {
   assert(heap.remove().lengthSq == 5*5);
   assert(heap.remove().lengthSq == 5*5);
   assert(heap.remove() == Vec(10, 20));
+  assert(heap.size == 0);
 }
 
 unittest {

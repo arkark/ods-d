@@ -42,6 +42,13 @@ public:
     bubbleUp(n - 1);
   }
 
+  // O(1)
+  T front() in {
+    assert(n > 0, "Attempting to fetch the front of an empty BinaryHeap");
+  } do {
+    return xs[0];
+  }
+
   // O(log n)
   // @return: removed value
   T remove() in {
