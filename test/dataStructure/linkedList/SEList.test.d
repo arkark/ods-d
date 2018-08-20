@@ -142,7 +142,7 @@ unittest {
 unittest {
   writeln(__FILE__, ": Random `add` and `remove` 2");
 
-  auto list = new SEList!long(100);
+  auto list = new SEList!long(5);
   long[] ys = [];
 
   long n = 1000;

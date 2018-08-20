@@ -51,7 +51,7 @@ unittest {
     aa[x] = true;
   }
 
-  foreach(x; xs.randomSample(xs.length/3, rnd)) {
+  foreach(x; xs.randomSample(xs.length*2/3, rnd)) {
     assert(set.remove(x) == aa.remove(x));
   }
 

@@ -31,13 +31,14 @@ unittest {
   assert(tree.add(100));
   assert(!tree.add(2)); // 2 already exists
 
+  assert(tree.remove(2));
   assert(tree.remove(5));
   assert(!tree.remove(5)); // 5 was already removed
 
-  assert(tree.size == 3);
+  assert(tree.size == 2);
 
-  assert(tree.exists(2) && tree.exists(4) && tree.exists(100));
-  assert(!tree.exists(5) && !tree.exists(10));
+  assert(tree.exists(4) && tree.exists(100));
+  assert(!tree.exists(2) && !tree.exists(5) && !tree.exists(10));
 
   tree.clear();
   assert(tree.size == 0);
@@ -82,7 +83,7 @@ unittest {
     aa[x] = true;
   }
 
-  foreach(x; xs.randomSample(xs.length/3, rnd)) {
+  foreach(x; xs.randomSample(xs.length*2/3, rnd)) {
     assert(tree.remove(x) == aa.remove(x));
   }
 
