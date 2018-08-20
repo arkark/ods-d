@@ -69,7 +69,9 @@ unittest {
     ys.sort!"a<b";
 
     if(i%2 != 0) {
+      assert(heap.front() == ys[0]);
       assert(heap.remove() == ys[0]);
+      assert(heap.front() == ys[1]);
       ys = ys[1..$];
     }
   }
