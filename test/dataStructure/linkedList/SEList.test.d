@@ -119,7 +119,7 @@ unittest {
 }
 
 unittest {
-  writeln(__FILE__, ": Random `add` and `remove`");
+  writeln(__FILE__, ": Random `add` and `remove` 1");
 
   auto list = new SEList!long(100);
   long n = 1000;
@@ -135,6 +135,32 @@ unittest {
   }
   foreach(i; 0..n) {
     assert(list.remove(0) == xs[n-i-1]);
+  }
+  assert(list.size == 0);
+}
+
+unittest {
+  writeln(__FILE__, ": Random `add` and `remove` 2");
+
+  auto list = new SEList!long(100);
+  long[] ys = [];
+
+  long n = 1000;
+  long[] xs = randomArray!long(n);
+  auto rnd = Random(unpredictableSeed);
+
+  foreach(i; 0..n) {
+    auto j = uniform(0, list.size + 1, rnd);
+    list.add(j, xs[i]);
+    ys = ys[0..j] ~ xs[i] ~ ys[j..$];
+  }
+  foreach(i; 0..n) {
+    assert(list.get(i) == ys[i]);
+  }
+  foreach(i; 0..n) {
+    auto j = uniform(0, list.size, rnd);
+    assert(list.remove(j) == ys[j]);
+    ys = ys[0..j] ~ ys[j+1..$];
   }
   assert(list.size == 0);
 }

@@ -75,13 +75,15 @@ unittest {
   auto tree = new RedBlackTree!long();
   bool[long] aa;
 
-  foreach(i, x; xs) {
-    if (i%2 == 0) {
-      assert(tree.add(x) != aa.get(x, false));
-      aa[x] = true;
-    } else {
-      assert(tree.remove(x) == aa.remove(x));
-    }
+  auto rnd = Random(unpredictableSeed);
+
+  foreach(x; xs) {
+    assert(tree.add(x) != aa.get(x, false));
+    aa[x] = true;
+  }
+
+  foreach(x; xs.randomSample(xs.length/3, rnd)) {
+    assert(tree.remove(x) == aa.remove(x));
   }
 
   foreach(x; xs) {

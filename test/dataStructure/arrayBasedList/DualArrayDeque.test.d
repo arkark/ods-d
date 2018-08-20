@@ -119,7 +119,7 @@ unittest {
 }
 
 unittest {
-  writeln(__FILE__, ": Random `add` and `remove`");
+  writeln(__FILE__, ": Random `add` and `remove` 1");
 
   auto deque = new DualArrayDeque!long();
   long n = 1000;
@@ -135,6 +135,32 @@ unittest {
   }
   foreach(i; 0..n) {
     assert(deque.remove(0) == xs[n-i-1]);
+  }
+  assert(deque.size == 0);
+}
+
+unittest {
+  writeln(__FILE__, ": Random `add` and `remove` 2");
+
+  auto deque = new DualArrayDeque!long();
+  long[] ys = [];
+
+  long n = 1000;
+  long[] xs = randomArray!long(n);
+  auto rnd = Random(unpredictableSeed);
+
+  foreach(i; 0..n) {
+    auto j = uniform(0, deque.size + 1, rnd);
+    deque.add(j, xs[i]);
+    ys = ys[0..j] ~ xs[i] ~ ys[j..$];
+  }
+  foreach(i; 0..n) {
+    assert(deque.get(i) == ys[i]);
+  }
+  foreach(i; 0..n) {
+    auto j = uniform(0, deque.size, rnd);
+    assert(deque.remove(j) == ys[j]);
+    ys = ys[0..j] ~ ys[j+1..$];
   }
   assert(deque.size == 0);
 }

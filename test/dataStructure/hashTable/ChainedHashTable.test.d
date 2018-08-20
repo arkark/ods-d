@@ -44,13 +44,15 @@ unittest {
   auto set = new ChainedHashTable!long();
   bool[long] aa;
 
-  foreach(i, x; xs) {
-    if (i%2 == 0) {
-      assert(set.add(x) != aa.get(x, false));
-      aa[x] = true;
-    } else {
-      assert(set.remove(x) == aa.remove(x));
-    }
+  auto rnd = Random(unpredictableSeed);
+
+  foreach(x; xs) {
+    assert(set.add(x) != aa.get(x, false));
+    aa[x] = true;
+  }
+
+  foreach(x; xs.randomSample(xs.length/3, rnd)) {
+    assert(set.remove(x) == aa.remove(x));
   }
 
   foreach(x; xs) {

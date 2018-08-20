@@ -8,6 +8,7 @@ public {
   import std.format : format;
   import std.datetime : msecs;
   import std.algorithm : equal, sort;
+  import std.random;
 }
 
 Duration benchmark(alias fun)(uint iter) {

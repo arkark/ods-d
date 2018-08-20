@@ -82,7 +82,7 @@ unittest {
 }
 
 unittest {
-  writeln(__FILE__, ": Random `add` and `remove`");
+  writeln(__FILE__, ": Random `add` and `remove` 1");
 
   auto stack = new ArrayStack!long();
   long n = 1000;
@@ -98,6 +98,32 @@ unittest {
   }
   foreach(i; 0..n) {
     assert(stack.remove(0) == xs[n-i-1]);
+  }
+  assert(stack.size == 0);
+}
+
+unittest {
+  writeln(__FILE__, ": Random `add` and `remove` 2");
+
+  auto stack = new ArrayStack!long();
+  long[] ys = [];
+
+  long n = 1000;
+  long[] xs = randomArray!long(n);
+  auto rnd = Random(unpredictableSeed);
+
+  foreach(i; 0..n) {
+    auto j = uniform(0, stack.size + 1, rnd);
+    stack.add(j, xs[i]);
+    ys = ys[0..j] ~ xs[i] ~ ys[j..$];
+  }
+  foreach(i; 0..n) {
+    assert(stack.get(i) == ys[i]);
+  }
+  foreach(i; 0..n) {
+    auto j = uniform(0, stack.size, rnd);
+    assert(stack.remove(j) == ys[j]);
+    ys = ys[0..j] ~ ys[j+1..$];
   }
   assert(stack.size == 0);
 }
