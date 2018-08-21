@@ -22,6 +22,16 @@ public:
     clear();
   }
 
+  // O(n)
+  this(T[] xs) {
+    clear();
+    this.xs = xs.dup;
+    this.n = xs.length;
+    foreach_reverse(i; 0..n/2) {
+      trickleDown(i);
+    }
+  }
+
   // O(1)
   void clear() {
     n = 0;

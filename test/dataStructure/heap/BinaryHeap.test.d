@@ -30,6 +30,20 @@ unittest {
 }
 
 unittest {
+  writeln(__FILE__, ": Constructor with an array");
+
+  auto heap = new BinaryHeap!(long, "a < b")([10, 2, 4, 7, 0]);
+
+  assert(heap.size == 5);
+  assert(heap.remove() == 0);
+  assert(heap.remove() == 2);
+  assert(heap.remove() == 4);
+  assert(heap.remove() == 7);
+  assert(heap.remove() == 10);
+  assert(heap.size == 0);
+}
+
+unittest {
   writeln(__FILE__, ": Use of a defined struct");
 
   struct Vec {
