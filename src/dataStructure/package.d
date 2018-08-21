@@ -10,4 +10,5 @@ public {
   import odsD.dataStructure.scapegoatTree;
   import odsD.dataStructure.redBlackTree;
   import odsD.dataStructure.heap;
+  import odsD.dataStructure.sort;
 }
