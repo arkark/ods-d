@@ -5,7 +5,9 @@ import std.array;
 import std.range;
 import std.algorithm;
 
-class AdjacentMatrix {
+import odsD.dataStructure.graph.Graph;
+
+class AdjacentMatrix : Graph {
 
 protected:
   size_t n;

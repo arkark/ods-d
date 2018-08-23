@@ -5,9 +5,10 @@ import std.array;
 import std.range;
 import std.algorithm;
 
+import odsD.dataStructure.graph.Graph;
 import odsD.dataStructure.arrayBasedList.ArrayStack;
 
-class AdjacentList {
+class AdjacentList : Graph {
 
 protected:
   size_t n;
