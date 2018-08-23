@@ -5,7 +5,7 @@ import std.math;
 import std.functional;
 
 class ScapegoatTree(T, alias less = "a < b")
-if (is(typeof(binaryFun!less(T.init, T.init)))) {
+if (is(typeof(binaryFun!less(T.init, T.init)) == bool)) {
 
 protected:
   alias _less = binaryFun!less;

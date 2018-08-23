@@ -8,7 +8,7 @@ import std.functional;
 import std.traits;
 
 class SkiplistSSet(T, alias less = "a < b")
-if (is(typeof(binaryFun!less(T.init, T.init)))) {
+if (is(typeof(binaryFun!less(T.init, T.init)) == bool)) {
 
 protected:
   alias _less = binaryFun!less;

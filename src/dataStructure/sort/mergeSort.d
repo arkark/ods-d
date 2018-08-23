@@ -5,7 +5,7 @@ import std.functional;
 // O(n log n)
 // @sideEffect: xs
 void mergeSort(alias less = "a < b", T)(T[] xs)
-if (is(typeof(binaryFun!less(T.init, T.init)))) {
+if (is(typeof(binaryFun!less(T.init, T.init)) == bool)) {
 
   if (xs.length <= 1) return;
   T[] ls = xs[0..$/2].dup;
@@ -17,7 +17,7 @@ if (is(typeof(binaryFun!less(T.init, T.init)))) {
 }
 
 private void merge(alias less = "a < b", T)(T[] ls, T[] rs, T[] xs)
-if (is(typeof(binaryFun!less(T.init, T.init)))) {
+if (is(typeof(binaryFun!less(T.init, T.init)) == bool)) {
   alias _less = binaryFun!less;
 
   size_t l = 0;

@@ -7,12 +7,12 @@ import std.random;
 // average O(n log n)
 // @sideEffect: xs
 void quickSort(alias less = "a < b", T)(T[] xs)
-if (is(typeof(binaryFun!less(T.init, T.init)))) {
+if (is(typeof(binaryFun!less(T.init, T.init)) == bool)) {
   quickSort!less(xs, 0, xs.length);
 }
 
 private void quickSort(alias less = "a < b", T)(T[] xs, size_t i, size_t n)
-if (is(typeof(binaryFun!less(T.init, T.init)))) {
+if (is(typeof(binaryFun!less(T.init, T.init)) == bool)) {
   alias _less = binaryFun!less;
   auto rnd = Random(unpredictableSeed);
 

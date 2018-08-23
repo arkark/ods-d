@@ -8,7 +8,7 @@ import std.random;
 // Meldable Heap
 //   - Min Heap: the root node has the **minimum** value among all nodes.
 class MeldableHeap(T, alias less = "a < b")
-if (is(typeof(binaryFun!less(T.init, T.init)))) {
+if (is(typeof(binaryFun!less(T.init, T.init)) == bool)) {
 
 protected:
   alias _less = binaryFun!less;
