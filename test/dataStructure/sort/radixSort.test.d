@@ -1,7 +1,7 @@
 module odsD.test.dataStructure.sort.radixSort;
 
 import odsD.dataStructure.sort.radixSort;
-import odsD.test;
+import odsD.test.util;
 
 unittest {
   writeln(__FILE__, ": Some operations");

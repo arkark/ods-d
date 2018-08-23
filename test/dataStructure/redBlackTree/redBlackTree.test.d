@@ -1,7 +1,7 @@
 module odsD.test.dataStructure.redBlackTree.RedBlackTree;
 
 import odsD.dataStructure.redBlackTree.RedBlackTree;
-import odsD.test;
+import odsD.test.util;
 
 unittest {
   writeln(__FILE__, ": Some operations");

@@ -1,7 +1,7 @@
 module odsD.test.dataStructure.randomBinarySearchTree.Treap;
 
 import odsD.dataStructure.randomBinarySearchTree.Treap;
-import odsD.test;
+import odsD.test.util;
 
 unittest {
   writeln(__FILE__, ": Some operations");

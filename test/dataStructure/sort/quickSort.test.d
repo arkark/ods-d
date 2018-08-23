@@ -1,7 +1,7 @@
 module odsD.test.dataStructure.sort.quickSort;
 
 import odsD.dataStructure.sort.quickSort;
-import odsD.test;
+import odsD.test.util;
 
 unittest {
   writeln(__FILE__, ": Some operations");

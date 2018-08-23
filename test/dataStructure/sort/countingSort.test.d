@@ -1,7 +1,7 @@
 module odsD.test.dataStructure.sort.countingSort;
 
 import odsD.dataStructure.sort.countingSort;
-import odsD.test;
+import odsD.test.util;
 
 unittest {
   writeln(__FILE__, ": Some operations");

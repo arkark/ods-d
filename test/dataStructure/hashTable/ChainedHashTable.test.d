@@ -1,7 +1,7 @@
 module odsD.test.dataStructure.hashTable.ChainedHashTable;
 
 import odsD.dataStructure.hashTable.ChainedHashTable;
-import odsD.test;
+import odsD.test.util;
 
 unittest {
   writeln(__FILE__, ": Some operations");

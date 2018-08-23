@@ -1,7 +1,7 @@
 module odsD.test.dataStructure.binaryTree.BinarySearchTree;
 
 import odsD.dataStructure.binaryTree.BinarySearchTree;
-import odsD.test;
+import odsD.test.util;
 
 unittest {
   writeln(__FILE__, ": Some operations");

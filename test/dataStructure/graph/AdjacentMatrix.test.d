@@ -1,7 +1,7 @@
 module odsD.test.dataStructure.graph.AdjacentMatrix;
 
 import odsD.dataStructure.graph.AdjacentMatrix;
-import odsD.test;
+import odsD.test.util;
 
 unittest {
   writeln(__FILE__, ": Some operations");

@@ -1,7 +1,7 @@
 module odsD.test.dataStructure.heap.MeldableHeap;
 
 import odsD.dataStructure.heap.MeldableHeap;
-import odsD.test;
+import odsD.test.util;
 
 unittest {
   writeln(__FILE__, ": Some operations");

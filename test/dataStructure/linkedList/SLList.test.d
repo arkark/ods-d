@@ -1,7 +1,7 @@
 module odsD.test.dataStructure.linkedList.SLList;
 
 import odsD.dataStructure.linkedList.SLList;
-import odsD.test;
+import odsD.test.util;
 
 unittest {
   writeln(__FILE__, ": Some operations");

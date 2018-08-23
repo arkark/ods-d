@@ -1,7 +1,7 @@
 module odsD.test.dataStructure.arrayBasedList.RootishArrayStack;
 
 import odsD.dataStructure.arrayBasedList.RootishArrayStack;
-import odsD.test;
+import odsD.test.util;
 
 unittest {
   writeln(__FILE__, ": Some operations");
