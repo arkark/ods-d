@@ -174,9 +174,7 @@ protected:
       } else {
         rotateLeft(node);
       }
-      if (node is root) {
-        root = node.parent;
-      }
+      assert(node !is root);
     }
   }
 
@@ -231,9 +229,7 @@ protected:
         parent.right = child;
       }
     }
-    if (child !is nil) {
-      child.parent = parent;
-    }
+    assert(child is nil);
 
     n--;
   }
