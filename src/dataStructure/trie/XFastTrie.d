@@ -50,7 +50,7 @@ public:
     return n;
   }
 
-  // O(log w)
+  // average O(log w)
   // @return: min{ y \in this | y >= x }
   Maybe!T find(T x) in {
     T y = _value(_intValue(x));
@@ -80,11 +80,9 @@ public:
     size_t bit = (ix >>> (w-l-1))&1;
     u = bit==0 ? u.jump : u.jump.next;
     return u is dummy ? None!T : Just(u.x);
-    // u = bit==0 ? u.jump.prev : u.jump;
-    // return u.next is dummy ? None!T : Just(u.next.x);
   }
 
-  // O(log w)
+  // average O(log w)
   bool exists(T x) {
     Maybe!T res = find(x);
     return res.isJust && res.get==x;
@@ -140,7 +138,7 @@ public:
     return true;
   }
 
-  // O(log n)
+  // O(w)
   // @return:
   //   true  ... if x was removed successfully
   //   false ... if x didn't exist

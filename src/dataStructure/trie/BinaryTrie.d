@@ -113,7 +113,7 @@ public:
     return true;
   }
 
-  // O(log n)
+  // O(w)
   // @return:
   //   true  ... if x was removed successfully
   //   false ... if x didn't exist
