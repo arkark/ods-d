@@ -56,9 +56,14 @@ public:
     T y = _value(_intValue(x));
     assert(y == x, format!"value(intValue(%s)) is %s, but should be %s"(x, y, x));
   } do {
+    Node node = findNode(x);
+    return node is dummy ? None!T : Just(node.x);
+  }
+
+  Node findNode(T x) {
     size_t l = 0;
     size_t r = w+1;
-    size_t ix = _intValue(x);
+    S ix = _intValue(x);
     Node u;
     while(r - l > 1) {
       size_t c = (l + r)/2;
@@ -74,12 +79,11 @@ public:
     assert(u !is null);
 
     if (l == w) {
-      return Just(u.x);
+      return u;
     }
 
     size_t bit = (ix >>> (w-l-1))&1;
-    u = bit==0 ? u.jump : u.jump.next;
-    return u is dummy ? None!T : Just(u.x);
+    return bit==0 ? u.jump : u.jump.next;
   }
 
   // average O(log w)
@@ -98,7 +102,7 @@ public:
   } do {
     size_t i = 0;
     size_t bit = 0;
-    size_t ix = _intValue(x);
+    S ix = _intValue(x);
     Node node = root;
     for(; i<w; i++) {
       bit = (ix >>> (w-i-1)) & 1;
@@ -147,7 +151,7 @@ public:
     assert(y == x, format!"value(intValue(%s)) is %s, but should be %s"(x, y, x));
   } do {
     size_t bit = 0;
-    size_t ix = _intValue(x);
+    S ix = _intValue(x);
     Node node = root;
     foreach(i; 0..w) {
       bit = (ix >>> (w-i-1)) & 1;
@@ -184,7 +188,7 @@ public:
 
 protected:
   void addNodeToTable(T x) {
-    size_t ix = _intValue(x);
+    S ix = _intValue(x);
     Node node = root;
     foreach(i; 1..w+1) {
       node = node.children[(ix >>> (w-i))&1];

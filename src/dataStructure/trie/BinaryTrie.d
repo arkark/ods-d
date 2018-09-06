@@ -46,7 +46,7 @@ public:
   } do {
     size_t i = 0;
     size_t bit = 0;
-    size_t ix = _intValue(x);
+    S ix = _intValue(x);
     Node node = root;
     for(; i<w; i++) {
       bit = (ix >>> (w-i-1)) & 1;
@@ -74,7 +74,7 @@ public:
   } do {
     size_t i = 0;
     size_t bit = 0;
-    size_t ix = _intValue(x);
+    S ix = _intValue(x);
     Node node = root;
     for(; i<w; i++) {
       bit = (ix >>> (w-i-1)) & 1;
@@ -122,7 +122,7 @@ public:
     assert(y == x, format!"value(intValue(%s)) is %s, but should be %s"(x, y, x));
   } do {
     size_t bit = 0;
-    size_t ix = _intValue(x);
+    S ix = _intValue(x);
     Node node = root;
     foreach(i; 0..w) {
       bit = (ix >>> (w-i-1)) & 1;
