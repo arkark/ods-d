@@ -1,5 +1,7 @@
 module odsD.util.Maybe;
 
+import std.functional;
+
 struct Maybe(T) {
 
 private:
@@ -39,4 +41,14 @@ Maybe!T Just(T)(T value) in {
 
 Maybe!T None(T)() {
   return Maybe!T();
+}
+
+// fmap :: Maybe!T -> (T -> S) -> Maybe!S
+Maybe!S fmap(alias fun, T, S = typeof(unaryFun!fun(T.init)))(Maybe!T m) {
+  return m.isNone ? None!S : Just(unaryFun!fun(m.get));
+}
+
+// bind :: Maybe!T -> (T -> Maybe!S) -> Maybe!S
+Maybe!S bind(alias fun, T, _ : Maybe!S = typeof(unaryFun!fun(T.init)), S)(Maybe!T m) {
+  return m.isNone ? None!S : unaryFun!fun(m.get);
 }
