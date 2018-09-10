@@ -3,9 +3,10 @@ module odsD.dataStructure.trie.XFastTrie;
 import odsD.util.Maybe;
 import std.format;
 import std.functional;
-import  odsD.dataStructure.hashTable.LinearHashTable;
+import std.conv;
+import odsD.dataStructure.hashTable.LinearHashTable;
 
-class XFastTrie(T, S = size_t, alias intValue = format!"cast(%s)a"(S.stringof), alias value = format!"cast(%s)a"(T.stringof))
+class XFastTrie(T, S = size_t, alias intValue = to!S, alias value = to!T)
 if (is(typeof(unaryFun!intValue(T.init)) == S) && is(typeof(unaryFun!value(S.init)) == T)) {
 
 protected:
@@ -18,9 +19,10 @@ protected:
 
   Node root;
   size_t n;
-  enum size_t w = S.sizeof * 8;
 
 public:
+  enum size_t w = S.sizeof * 8;
+
   // O(1)
   this() {
     dummy = new Node;
@@ -51,7 +53,7 @@ public:
   }
 
   // average O(log w)
-  // @return: min{ y \in this | y >= x }
+  // @return: min{ y \in this | iy >= ix }
   Maybe!T find(T x) in {
     T y = _value(_intValue(x));
     assert(y == x, format!"value(intValue(%s)) is %s, but should be %s"(x, y, x));
@@ -60,11 +62,14 @@ public:
     return node is dummy ? None!T : Just(node.x);
   }
 
-  Node findNode(T x) {
+  Node findNode(T x) in {
+    T y = _value(_intValue(x));
+    assert(y == x, format!"value(intValue(%s)) is %s, but should be %s"(x, y, x));
+  } do {
     size_t l = 0;
     size_t r = w+1;
     S ix = _intValue(x);
-    Node u;
+    Node u = root;
     while(r - l > 1) {
       size_t c = (l + r)/2;
       Node v = new Node;
@@ -76,7 +81,6 @@ public:
         r = c;
       }
     }
-    assert(u !is null);
 
     if (l == w) {
       return u;
@@ -104,22 +108,26 @@ public:
     size_t bit = 0;
     S ix = _intValue(x);
     Node node = root;
-    for(; i<w; i++) {
+    while(i < w) {
       bit = (ix >>> (w-i-1)) & 1;
       if (node.children[bit] is null) break;
       node = node.children[bit];
+      i++;
     }
     if (i == w) {
       assert(node.x == x);
       return false;
     }
     Node prev = bit==1 ? node.jump : node.jump.prev;
+    assert(prev is dummy || _intValue(prev.x) < ix);
+    assert(prev.next is dummy || _intValue(prev.next.x) > ix);
     node.jump = null;
-    for(; i<w; i++) {
+    while(i < w) {
       bit = (ix >>> (w-i-1)) & 1;
       node.children[bit] = new Node;
       node.children[bit].parent = node;
       node = node.children[bit];
+      i++;
     }
     node.x = x;
     node.prev = prev;
@@ -162,23 +170,18 @@ public:
     node.prev.next = node.next;
     node.next.prev = node.prev;
     Node v = node;
-    size_t j = 0;
-    for(; j<w; j++) {
-      bit = (ix >>> j) & 1;
+    foreach_reverse(i; 0..w) {
+      bit = (ix >>> (w-i-1)) & 1;
       v.parent.children[bit] = null;
-      tables[w-j].remove(v); // remove the Node from tables
+      tables[i+1].remove(v); // remove the Node from tables
       v = v.parent;
-      if (v.children[bit^1] !is null) break;
+      if (v.children[1-bit] !is null) break;
     }
-    assert(j < w);
-    bit = (ix >>> j) & 1;
-    v.jump = node.children[bit^1];
+    v.jump = node.children[v.prev is null];
     v = v.parent;
-    j++;
-    for(; j<w; j++) {
-      bit = (ix >>> j) & 1;
+    while(v !is null) {
       if (v.jump is node) {
-        v.jump = node.children[bit^1];
+        v.jump = node.children[v.prev is null];
       }
       v = v.parent;
     }

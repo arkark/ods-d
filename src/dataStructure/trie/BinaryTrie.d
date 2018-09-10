@@ -3,8 +3,9 @@ module odsD.dataStructure.trie.BinaryTrie;
 import odsD.util.Maybe;
 import std.format;
 import std.functional;
+import std.conv;
 
-class BinaryTrie(T, S = size_t, alias intValue = format!"cast(%s)a"(S.stringof), alias value = format!"cast(%s)a"(T.stringof))
+class BinaryTrie(T, S = size_t, alias intValue = to!S, alias value = to!T)
 if (is(typeof(unaryFun!intValue(T.init)) == S) && is(typeof(unaryFun!value(S.init)) == T)) {
 
 protected:
@@ -39,7 +40,7 @@ public:
   }
 
   // O(w)
-  // @return: min{ y \in this | y >= x }
+  // @return: min{ y \in this | iy >= ix }
   Maybe!T find(T x) in {
     T y = _value(_intValue(x));
     assert(y == x, format!"value(intValue(%s)) is %s, but should be %s"(x, y, x));
@@ -48,10 +49,11 @@ public:
     size_t bit = 0;
     S ix = _intValue(x);
     Node node = root;
-    for(; i<w; i++) {
+    while(i < w) {
       bit = (ix >>> (w-i-1)) & 1;
       if (node.children[bit] is null) break;
       node = node.children[bit];
+      i++;
     }
     if (i == w) return Just(node.x);
     node = bit==0 ? node.jump : node.jump.next;
@@ -76,22 +78,26 @@ public:
     size_t bit = 0;
     S ix = _intValue(x);
     Node node = root;
-    for(; i<w; i++) {
+    while(i < w) {
       bit = (ix >>> (w-i-1)) & 1;
       if (node.children[bit] is null) break;
       node = node.children[bit];
+      i++;
     }
     if (i == w) {
       assert(node.x == x);
       return false;
     }
     Node prev = bit==1 ? node.jump : node.jump.prev;
+    assert(prev is dummy || _intValue(prev.x) < ix);
+    assert(prev.next is dummy || _intValue(prev.next.x) > ix);
     node.jump = null;
-    for(; i<w; i++) {
+    while(i < w) {
       bit = (ix >>> (w-i-1)) & 1;
       node.children[bit] = new Node;
       node.children[bit].parent = node;
       node = node.children[bit];
+      i++;
     }
     node.x = x;
     node.prev = prev;
@@ -133,22 +139,17 @@ public:
     node.prev.next = node.next;
     node.next.prev = node.prev;
     Node v = node;
-    size_t j = 0;
-    for(; j<w; j++) {
-      bit = (ix >>> j) & 1;
+    foreach_reverse(i; 0..w) {
+      bit = (ix >>> (w-i-1)) & 1;
       v = v.parent;
       v.children[bit] = null;
-      if (v.children[bit^1] !is null) break;
+      if (v.children[1-bit] !is null) break;
     }
-    assert(j < w);
-    bit = (ix >>> j) & 1;
-    v.jump = node.children[bit^1];
+    v.jump = node.children[v.prev is null];
     v = v.parent;
-    j++;
-    for(; j<w; j++) {
-      bit = (ix >>> j) & 1;
+    while(v !is null) {
       if (v.jump is node) {
-        v.jump = node.children[bit^1];
+        v.jump = node.children[v.prev is null];
       }
       v = v.parent;
     }

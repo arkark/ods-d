@@ -69,11 +69,11 @@ unittest {
 unittest {
   writeln(__FILE__, ": Random `add` and `remove`");
 
-  long n = 1000;
-  long[] xs = randomArray!long(n);
+  size_t n = 1000;
+  size_t[] xs = randomArray!size_t(n);
 
-  auto trie = new BinaryTrie!long();
-  bool[long] aa;
+  auto trie = new BinaryTrie!size_t();
+  bool[size_t] aa;
 
   auto rnd = Random(unpredictableSeed);
 
@@ -84,6 +84,11 @@ unittest {
 
   foreach(x; xs.randomSample(xs.length*2/3, rnd)) {
     assert(trie.remove(x) == aa.remove(x));
+  }
+
+  foreach(x; xs) {
+    auto result = trie.find(x);
+    assert(result.isNone || result.get >= x);
   }
 
   foreach(x; xs) {
