@@ -77,6 +77,7 @@ public:
   void push(T x) {
     add(n, x);
   }
+  alias insertBack = push;
 
   // amortized O(1)
   T pop() in {
@@ -84,6 +85,7 @@ public:
   } do {
     return remove(n - 1);
   }
+  alias removeBack = pop;
 
 package:
   // O(1)
