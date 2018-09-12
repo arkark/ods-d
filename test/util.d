@@ -7,7 +7,9 @@ public {
   import std.stdio : writeln;
   import std.format : format;
   import std.datetime : msecs;
-  import std.algorithm : equal, sort;
+  import std.algorithm : equal, sort, map;
+  import std.range: zip;
+  import std.array;
   import std.random;
 }
 
