@@ -1,13 +1,13 @@
-module odsD.test.dataStructure.graph.AdjacentList;
+module odsD.test.dataStructure.graph.AdjacencyList;
 
-import odsD.dataStructure.graph.AdjacentList;
+import odsD.dataStructure.graph.AdjacencyList;
 import odsD.dataStructure.graph.traversal;
 import odsD.test.util;
 
 unittest {
   writeln(__FILE__, ": Some operations");
 
-  auto graph = new AdjacentList(3);
+  auto graph = new AdjacencyList(3);
   assert(graph.size == 3);
 
   graph.addEdge(0, 1);
@@ -29,7 +29,7 @@ unittest {
 unittest {
   writeln(__FILE__, ": Test bfs");
 
-  auto graph = new AdjacentList(3);
+  auto graph = new AdjacencyList(3);
   assert(graph.size == 3);
 
   graph.addEdge(0, 1);
@@ -44,7 +44,7 @@ unittest {
 unittest {
   writeln(__FILE__, ": Test dfs");
 
-  auto graph = new AdjacentList(3);
+  auto graph = new AdjacencyList(3);
   assert(graph.size == 3);
 
   graph.addEdge(0, 1);
@@ -59,7 +59,7 @@ unittest {
 unittest {
   writeln(__FILE__, ": Test dfs2");
 
-  auto graph = new AdjacentList(3);
+  auto graph = new AdjacencyList(3);
   assert(graph.size == 3);
 
   graph.addEdge(0, 1);

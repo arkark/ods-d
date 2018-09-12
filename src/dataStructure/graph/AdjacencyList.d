@@ -1,4 +1,4 @@
-module odsD.dataStructure.graph.AdjacentList;
+module odsD.dataStructure.graph.AdjacencyList;
 
 import std.format;
 import std.array;
@@ -8,7 +8,7 @@ import std.algorithm;
 import odsD.dataStructure.graph.Graph;
 import odsD.dataStructure.arrayBasedList.ArrayStack;
 
-class AdjacentList : Graph {
+class AdjacencyList : Graph {
 
 protected:
   size_t n;
