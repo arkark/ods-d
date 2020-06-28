@@ -75,3 +75,5 @@ $ dub test
     - C, C++, Java, Python
 - [https://github.com/spinute/ods-go](https://github.com/spinute/ods-go)
     - Go
+- [https://github.com/o8vm/ods](https://github.com/o8vm/ods)
+    - Rust
